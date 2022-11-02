@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block page_title %} Join DMD {% endblock %}
+
+{% block content %}
+    <div class="signup__block">
+        <h2 class="signup__title">Welcome to DMD shop!</h2>
+        <form action="{{url_for('signup.sign_up')}}" class="signup_form">
+            <input type="text" id="username" placeholder="Имя пользователя">
+            <input type="email" id="email" placeholder="Электронная почта">
+            <input type="password" id="password" placeholder="Пароль">
+            <input type="password" id="confirm_password" placeholder="Подтвердите пароль">
+            <button type="button">Зарегистрироваться</button>
+        </form>
+    </div>
+{% endblock %}
