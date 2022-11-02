@@ -3,14 +3,23 @@
 {% block page_title %} Join DMD {% endblock %}
 
 {% block content %}
-    <div class="signup__block">
-        <h2 class="signup__title">Welcome to DMD shop!</h2>
-        <form action="{{url_for('signup.sign_up')}}" class="signup_form">
-            <input type="text" id="username" placeholder="Имя пользователя">
-            <input type="email" id="email" placeholder="Электронная почта">
-            <input type="password" id="password" placeholder="Пароль">
-            <input type="password" id="confirm_password" placeholder="Подтвердите пароль">
-            <button type="button">Зарегистрироваться</button>
-        </form>
+    <div id="linear__gradient">
+        <div class="signup__block">
+            <form action="{{url_for('signup.sign_up')}}" class="signup__form">
+                <h2 class="signup__form_title">Добро пожаловать в "DMD"</h2>
+                <div class="signup__form_item">Имя пользователя →<input type="text" id="username" name="username"></div>
+                <div class="signup__form_item">Электронная почта →<input type="email" id="email" name="email"></div>
+                <div class="signup__form_item">Пароль →<input type="password" id="password" name="password"></div>
+                <div class="signup__form_item">Подтвердите пароль →<input type="password" id="confirm_password" name="confirm_password"></div>
+                <button type="button" id="signup__form_button">Зарегистрироваться</button>
+                <div class="alert" style="color: rgb(255, 230, 0); margin: 5px 0; font-size: 14px;"></div>
+            </form>
+            <div class="to_signin" style="margin: 15px 0 0 0; font-size: 14px;">Есть аккаунт? <a href="sign_in">Войти</a></div>
+        </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sign.js') }}"></script>
 {% endblock %}
