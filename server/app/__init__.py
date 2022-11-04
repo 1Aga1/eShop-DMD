@@ -1,10 +1,9 @@
 from flask import Flask
+from .api import *
 
-from .views import *
-
-# Конфигурция запуска приложения
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
 
-# Регистрация blueprint
-app.register_blueprint(signup)
+app.register_blueprint(reg)
+
+
+
