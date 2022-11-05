@@ -1,0 +1,60 @@
+.block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    background-color: #4894EF;
+}
+
+.signup__block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 100vh;
+    background-color: #4361EE;
+    box-shadow: 2px 0 50px #030b2c;
+}
+
+.sign__selector {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    top: 10%;
+    transform: translateY(-10%);
+    width: 100%;
+}
+
+.to__signup a, .to__signin a {
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.to__signup {
+    position: relative;
+}
+
+.to__signup::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+}
+
+.shop__name {
+    width: 60vw;
+    text-align: center;
+}
+
+.shop__name h1 {
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: white;
+}

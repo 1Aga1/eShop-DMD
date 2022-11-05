@@ -1,13 +1,17 @@
 import {useRoutes} from "react-router-dom"
-import SignUp from "./pages/sign_up/sign_up";
+import SignUp from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
 
 const Router = () => {
     return useRoutes([
         {
-            path: "/", element : ""
+            path: "/", element : <SignIn/>
         },
         {
-            path: "/sign_up", element: <SignUp/>
+            path: "/SignIn", element : <SignIn/>
+        },
+        {
+            path: "/SignUp", element: <SignUp/>
         }
     ])
 }
