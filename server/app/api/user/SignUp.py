@@ -1,8 +1,10 @@
 from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin
 
-reg = Blueprint('reg', __name__)
+SignUp = Blueprint('SignUp', __name__)
 
-@reg.route('/reg', methods=['GET', 'POST'])
+@SignUp.route('/SignUp', methods=['GET', 'POST'])
+@cross_origin()
 def post():
     req_data = request.get_json()
 
@@ -11,10 +13,11 @@ def post():
     _password = req_data["password"]
     _confirm_password = req_data["confirm_password"]
 
-    # return render_template('sign_up.html')
+    print(req_data)
+
     return jsonify({
         "_username": _username,
         "_email": _email,
         "_password": _password,
-        "_confirm_password": _confirm_password
-    }), 200
+        "_confirm_password": _confirm_password,
+    })

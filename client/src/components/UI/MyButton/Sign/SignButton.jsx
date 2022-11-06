@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from "./SignButton.module.css";
 
-const SignButton = ({text, ...props}) => {
+const SignButton = ({children, ...props}) => {
     return (
-        <button className={classes.button} {...props}>{text}</button>
+        <button className={classes.button} {...props}>{children}</button>
     );
 };
 

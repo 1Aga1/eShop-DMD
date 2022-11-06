@@ -1,1 +1,1 @@
-from .registration import reg
+from .SignUp import SignUp
