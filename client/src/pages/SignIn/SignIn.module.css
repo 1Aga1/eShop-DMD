@@ -58,3 +58,13 @@
     letter-spacing: 3px;
     color: white;
 }
+
+@media (max-width: 808px){
+    .shop__name {
+        display: none;
+    }
+
+    .signin__block {
+        width: 100vw;
+    }
+}

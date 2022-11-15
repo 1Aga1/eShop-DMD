@@ -11,6 +11,8 @@ const SignUpForm = () => {
         confirm_password: ''
     })
 
+    const [alert, setAlert] = useState()
+
     const postUserData = () => {
         fetch("/SignUp", {
             method: "POST",
