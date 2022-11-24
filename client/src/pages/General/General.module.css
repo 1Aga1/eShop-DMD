@@ -1,0 +1,25 @@
+.main__content {
+    margin: 0 20px;
+}
+
+.content__header {
+    padding: 0 0 20px 0;
+    text-align: center;
+    /*border-bottom: 1px solid #fff;*/
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.game__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game__list a {
+    margin: 15px 20px;
+}

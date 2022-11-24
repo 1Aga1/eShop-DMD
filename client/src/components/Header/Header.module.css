@@ -1,0 +1,131 @@
+.header {
+    background-color: #10002B;
+    box-shadow: 0 5px 10px #10002B;
+}
+
+.header__content {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.finder {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    max-height: 40px;
+    background-color: rgba(172, 172, 172, 0.2);
+    border-radius: 20px;
+    margin: 0 20px;
+}
+
+.loupe {
+    margin: 10px;
+}
+
+.loupe img {
+    max-width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.menu__item {
+    position: relative;
+    margin: 0 20px;
+}
+
+.menu__item::before {
+    position: absolute;
+    opacity: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transition: .1s linear;
+}
+
+.menu__item:hover::before {
+    opacity: 1;
+}
+
+.burger {
+    position: relative;
+    display: none;
+    width: 35px;
+    height: 20px;
+    background: none;
+    border: none;
+    outline: none;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.burger::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sign__btn {
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.sign__btn:hover {
+    background-color: #fff;
+}
+
+.sign__btn:hover a {
+    color: #1E0050;
+}
+
+@media (max-width: 808px) {
+    .menu {
+        position: absolute;
+        flex-direction: column;
+        width: 100%;
+        top: 100%;
+        background-color: #10002B;
+    }
+
+    .menu__item {
+        margin: 15px 0;
+    }
+
+    .sign__btn {
+        margin: 15px 0;
+    }
+
+    .finder input {
+        padding: 5px;
+    }
+
+    .loupe {
+        margin: 5px;
+    }
+
+    .burger {
+        display: block;
+    }
+}

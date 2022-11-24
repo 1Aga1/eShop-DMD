@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    background-color: #4894EF;
+    background-color: #1E0050;
 }
 
 .signin__block {
@@ -14,8 +14,8 @@
     align-items: center;
     width: 40vw;
     height: 100vh;
-    background-color: #4361EE;
-    box-shadow: 2px 0 50px #030b2c;
+    background-color: #7B2CBF;
+    box-shadow: 15px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .sign__selector {
@@ -30,8 +30,6 @@
 .to__signup a, .to__signin a {
     font-weight: 500;
     font-size: 18px;
-    color: #fff;
-    text-decoration: none;
 }
 
 .to__signin {
@@ -54,9 +52,20 @@
 }
 
 .shop__name h1 {
+    font-size: 48px;
     font-weight: 500;
     letter-spacing: 3px;
     color: white;
+}
+
+.logo {
+    position: absolute;
+    bottom: 0;
+}
+
+.logo img {
+    width: 150px;
+    opacity: .2;
 }
 
 @media (max-width: 808px){

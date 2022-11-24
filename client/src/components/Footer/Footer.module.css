@@ -1,0 +1,16 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #10002B;
+    box-shadow: 0 -5px 10px #10002B;
+}
+
+.footer__content {
+    text-align: center;
+}
+
+.footer__content img {
+    max-width: 60px;
+    opacity: .2;
+}
