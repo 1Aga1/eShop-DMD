@@ -29,7 +29,7 @@ const Header = () => {
                     </div>
                     <div className={classes.finder}>
                         <img className={classes.loupe} src={loupe} alt=""/>
-                        <FinderInput></FinderInput>
+                        <FinderInput placeholder="Начните вводить..."></FinderInput>
                     </div>
                     {isShowMenu &&
                         <div className={classes.menu}>

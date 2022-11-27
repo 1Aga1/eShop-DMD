@@ -4,6 +4,7 @@
     border: 1px solid #C77DFF;
     border-radius: 10px;
     cursor: pointer;
+    max-width: 230px;
 }
 
 .game__card img {
@@ -16,16 +17,31 @@
 }
 
 .game__name {
-    padding: 10px 0 5px 10px;
+    padding: 10px 0 10px 10px;
     font-size: 18px;
 }
 
 .game__price {
-    padding: 5px 0 10px 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 10px;
     font-size: 18px;
     font-weight: 500;
 }
 
 .game__card:hover .game__name {
     font-weight: 600;
+}
+
+.old__price {
+    color: #808080;
+    text-decoration: line-through;
+    margin: 0 5px 0 10px;
+}
+
+.discount {
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 4px;
+    background-color: #7B2CBF;
 }

@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import logo from '../../images/logo.svg'
+import React from 'react';
 import classes from './General.module.css'
 import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
@@ -16,7 +15,6 @@ const General = () => {
                             <h1 className={classes.title}>Каталог товаров</h1>
                         </div>
                         <div className={classes.game__list}>
-                            <GameCard></GameCard>
                             <GameCard></GameCard>
                             <GameCard></GameCard>
                             <GameCard></GameCard>
