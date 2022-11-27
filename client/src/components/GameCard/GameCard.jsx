@@ -5,7 +5,7 @@ import GamePrice from "./GamePrice";
 
 const GameCard = ({maxWidth, fontSize, padding, margin}) => {
     return (
-        <a href="game/id123123" style={{maxWidth: maxWidth}}>
+        <a href="/game/id123123" style={{maxWidth: maxWidth}}>
             <div className={classes.game__card}>
                 <img src={gta5logo} alt=""/>
                 <div className={classes.card__info}>
