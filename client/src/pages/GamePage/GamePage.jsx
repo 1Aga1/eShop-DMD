@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
+
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import GamePrice from "../../components/GameCard/GamePrice";
 import GameCard from "../../components/GameCard/GameCard";
 import AddToBasketBtn from "../../components/UI/MyButton/AddToBasket/AddToBasketBtn";
 import ScreenshotsAndAboutBtn from "../../components/UI/MyButton/ScreenshotsAndAbout/ScreenshotsAndAboutBtn";
+import Footer from "../../components/Footer/Footer";
+
 import classes from "./GamePage.module.css";
+
 import gta5logo from "../../images/gta 5 logo.svg";
 import trevor from "../../images/trevor.svg";
 import car from "../../images/car.svg";
@@ -13,6 +16,7 @@ import car from "../../images/car.svg";
 const GamePage = () => {
     const [isShowScreenshots,SetShowScreenshots] = useState(true)
     const [isShowAbout,SetShowAbout] = useState(false)
+    const [isFavourites,SetFavourites] = useState(true)
 
     const SwitchToScreenshots = () => {
         SetShowScreenshots(true);
@@ -22,6 +26,10 @@ const GamePage = () => {
     const SwitchToAbout = () => {
         SetShowScreenshots(false);
         SetShowAbout(true);
+    }
+
+    const AddToFavourites = () => {
+        SetFavourites(!isFavourites)
     }
 
     return (
@@ -35,7 +43,13 @@ const GamePage = () => {
                                 <img src={gta5logo} alt="Game logo"/>
                             </div>
                             <div className={classes.game__info}>
-                                <h2 className={classes.title}>Grand Theft Auto V</h2>
+                                <div className={classes.title__block}>
+                                    <h2 className={classes.title}>Grand Theft Auto V</h2>
+                                    <button className={classes.add_to_favourites__btn} onClick={AddToFavourites}>
+                                        {isFavourites && <div className={classes.in_favourites }></div>}
+                                        {!isFavourites && <div className={classes.add_to_favourites}></div>}
+                                    </button>
+                                </div>
                                 <div className={classes.price__block}>
                                     <GamePrice style={{fontSize: "25px", padding: "10px 0", margin: "10px 20px 10px 0"}}></GamePrice>
                                     <AddToBasketBtn>В корзину</AddToBasketBtn>

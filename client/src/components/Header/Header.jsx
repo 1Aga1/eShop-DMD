@@ -34,7 +34,7 @@ const Header = () => {
                     {isShowMenu &&
                         <div className={classes.menu}>
                             <a className={classes.menu__item} href="/general">Каталог</a>
-                            <a className={classes.menu__item} href="/favorites">Избранное</a>
+                            <a className={classes.menu__item} href="/favourites">Избранное</a>
                             <a className={classes.menu__item} href="/basket">Корзина</a>
                             <div className={classes.sign__btn}>
                                 <a href="/signin">Войти</a>

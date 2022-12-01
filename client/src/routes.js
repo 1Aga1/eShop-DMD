@@ -3,6 +3,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
 import General from "./pages/General/General";
 import GamePage from "./pages/GamePage/GamePage";
+import Favourites from './pages/Favorites/Favourites'
 
 const Router = () => {
     return useRoutes([
@@ -20,6 +21,9 @@ const Router = () => {
         },
         {
             path: "/game/id:number", element: <GamePage/>
+        },
+        {
+            path: "/favourites", element: <Favourites/>
         }
     ])
 }

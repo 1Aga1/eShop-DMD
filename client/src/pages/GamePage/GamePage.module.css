@@ -18,8 +18,64 @@
     width: 70%;
 }
 
-.game__info .title {
+.title__block {
+    display: flex;
+    align-items: center;
+}
+
+.title__block .title {
     font-size: 40px;
+}
+
+.add_to_favourites__btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.add_to_favourites, .in_favourites {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.add_to_favourites:hover::before, .add_to_favourites:hover::after  {
+    background-color: red;
+}
+
+.add_to_favourites::before, .add_to_favourites::after,
+.in_favourites::before, .in_favourites::after {
+    content : '';
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 20px;
+    border-radius: 50px 50px 0 0;
+    border: 2px solid red;
+}
+
+.in_favourites::before, .in_favourites::after {
+    background-color: red;
+}
+
+.add_to_favourites::before,
+.in_favourites::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    z-index: 1000;
+    border-right: none;
+    border-bottom: none;
+}
+
+.add_to_favourites::after,
+.in_favourites::after {
+    top: 50%;
+    left: 70%;
+    transform: translate(-70%, -50%) rotate(45deg);
+    border-left: none;
+    border-bottom: none;
 }
 
 .price__block {
@@ -29,14 +85,12 @@
 
 .game__main__info {
     display: flex;
-    /*flex-wrap: wrap;*/
     margin: 80px 0 0 0;
 }
 
 .game__main__info__item {
     text-align: center;
     border-right: 1px solid #fff;
-    /*padding: 10px;*/
     width: 25%;
 }
 
@@ -64,7 +118,6 @@
 
 .similar__games .title {
     font-size: 22px;
-    /*font-weight: 500;*/
     margin: 20px 0;
     text-transform: uppercase;
 }
@@ -115,7 +168,7 @@
         width: 100%;
     }
 
-    .game__info .title {
+    .title__block .title {
         text-align: center;
     }
 
