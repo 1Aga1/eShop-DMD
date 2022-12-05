@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import General from "./pages/General/General";
 import GamePage from "./pages/GamePage/GamePage";
 import Favourites from './pages/Favourites/Favourites'
+import Basket from "./pages/Basket/Basket";
 
 const Router = () => {
     return useRoutes([
@@ -24,6 +25,9 @@ const Router = () => {
         },
         {
             path: "/favourites", element: <Favourites/>
+        },
+        {
+            path: "/basket", element: <Basket/>
         }
     ])
 }

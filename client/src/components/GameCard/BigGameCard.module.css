@@ -1,49 +1,31 @@
 a {
     position: relative;
+    margin: 0 0 20px 0;
 }
 
 .game__card {
     display: flex;
-    flex-direction: column;
     border: 1px solid #C77DFF;
     border-radius: 10px;
     cursor: pointer;
-    max-width: 230px;
+    max-width: 100%;
 }
 
 .game__card img {
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 0 0 10px ;
+    max-width: 20%;
 }
 
 .card__info {
     background-color: #10002B;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 10px 10px 0;
+    padding: 0 0 0 20px;
+    width: 100%;
 }
 
 .game__name {
     padding: 10px 0 10px 10px;
-    font-size: 18px;
-}
-
-.game__price {
-    display: flex;
-    align-items: center;
-    padding: 10px 0 10px 10px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.old__price {
-    color: #808080;
-    text-decoration: line-through;
-    margin: 0 5px 0 10px;
-}
-
-.discount {
-    font-size: 12px;
-    padding: 1px;
-    border-radius: 4px;
-    background-color: #7B2CBF;
+    font-size: 24px;
 }
 
 .btn__block {

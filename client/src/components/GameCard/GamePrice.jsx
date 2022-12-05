@@ -7,7 +7,7 @@ const GamePrice = (props) => {
         /*<p className={classes.game__price}>1999 руб.</p>*/
         /*Если есть скидка, то рендерим это*/
         <div className={classes.game__price} {...props}>
-            <p className={classes.new__price} >999 ₽</p>
+            <p className={classes.new__price}>999 ₽</p>
             <p className={classes.old__price}>1999 ₽</p>
             <div className={classes.discount}>-50%</div>
         </div>

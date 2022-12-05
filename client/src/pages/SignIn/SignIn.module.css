@@ -1,3 +1,7 @@
+input {
+    color: #000;
+}
+
 .block {
     display: flex;
     align-items: center;
