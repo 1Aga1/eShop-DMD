@@ -13,12 +13,12 @@
     letter-spacing: 1px;
 }
 
-.game__list {
+.favourites__list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.game__list a {
+.favourites__list a {
     margin: 15px 20px;
 }

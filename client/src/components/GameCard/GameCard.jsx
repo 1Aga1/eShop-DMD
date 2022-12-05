@@ -3,7 +3,7 @@ import classes from "./GameCard.module.css";
 import gta5logo from "../../images/gta 5 logo.svg";
 import GamePrice from "./GamePrice";
 
-const GameCard = ({maxWidth, fontSize, padding, margin}) => {
+const GameCard = ({maxWidth, fontSize, padding}) => {
     return (
         <a href="/game/id123123" style={{maxWidth: maxWidth}}>
             <div className={classes.game__card}>

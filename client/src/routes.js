@@ -3,7 +3,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
 import General from "./pages/General/General";
 import GamePage from "./pages/GamePage/GamePage";
-import Favourites from './pages/Favorites/Favourites'
+import Favourites from './pages/Favourites/Favourites'
 
 const Router = () => {
     return useRoutes([
