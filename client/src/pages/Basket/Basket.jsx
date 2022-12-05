@@ -6,7 +6,7 @@ import classes from "./Basket.module.css"
 
 const Basket = () => {
     return (
-        <div className="cart">
+        <div className="basket">
             <Header></Header>
                 <div className="main">
                     <div className="container">

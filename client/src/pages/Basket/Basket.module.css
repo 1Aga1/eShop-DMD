@@ -45,3 +45,13 @@
 .total__number {
     color: #ffce33;
 }
+
+@media (max-width: 1030px) {
+    .basket__list {
+        width: 100%;
+    }
+
+    .basket__total {
+        width: 100%;
+    }
+}
