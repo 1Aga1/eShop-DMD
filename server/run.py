@@ -1,8 +1,6 @@
-from flask_cors import CORS
+import os
 from app import app
-
-CORS(app)
 
 # Запускаем приложение
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=os.environ.get("DEBUG"))
