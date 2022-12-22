@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Navigate} from 'react-router-dom'
 import SignInput from "../../UI/MyInput/Sign/SignInput";
 import SignButton from "../../UI/MyButton/Sign/SignButton";
 import classes from "./SignUpForm.module.css";
@@ -14,18 +15,23 @@ const SignUpForm = () => {
     const [alert, setAlert] = useState()
 
     const postUserData = () => {
-        fetch("/SignUp", {
+        fetch("/api/register", {
             method: "POST",
             cache: "no-cache",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(UserData)
-        }).then(response => {
-            return response.json()
-        }).then (json => {
-            console.log(json)
         })
+            .then(response => response.json())
+            .then (response => {
+                if (response['status'] === "error") {
+                    setAlert(response['message'])
+                }
+                else {
+                    return <Navigate to='/general'/>
+                }
+            })
     }
 
     return (
@@ -56,6 +62,7 @@ const SignUpForm = () => {
                 style={{border: "2px solid #fff", color: "#fff", cursor: "pointer"}}
                 onClick={postUserData}
             >Зарегистрироваться</SignButton>
+            <div className="alert">{alert}</div>
         </form>
     );
 };

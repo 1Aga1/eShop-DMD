@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import SignInput from "../../UI/MyInput/Sign/SignInput";
 import SignButton from "../../UI/MyButton/Sign/SignButton";
 import classes from "./SignInForm.module.css";
+import {Navigate} from "react-router-dom";
 
 const SignInForm = () => {
     const [UserData, setUserData] = useState({
@@ -9,19 +10,25 @@ const SignInForm = () => {
         password: ''
     })
 
+    const [alert, setAlert] = useState()
+
     const postUserData = () => {
-        fetch("/SignIn", {
+        fetch("/api/auth", {
             method: "POST",
             cache: "no-cache",
             header: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(UserData)
-        }).then(response => {
-            return response.json()
-        }).then (json => {
-            console.log(json)
-        })
+        }).then(response => response.json())
+            .then (response => {
+                if (response['status'] === "error") {
+                    setAlert(response['message'])
+                }
+                else {
+                    return <Navigate to='/general'/>
+                }
+            })
     }
 
     return (
@@ -42,6 +49,7 @@ const SignInForm = () => {
                 style={{border: "2px solid #fff", color: "#fff", cursor: "pointer"}}
                 onClick={postUserData}
             >Войти</SignButton>
+            <div className="alert">{alert}</div>
         </form>
     );
 };

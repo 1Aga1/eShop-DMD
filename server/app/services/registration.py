@@ -25,9 +25,11 @@ def registration(_username,_email,_password):
                                         "verified_account": 0
                                         })
         except:
-            data = {"message": "Введенная почта недействительна"}
+            data = {"message": "Не удалось отправить письмо по указанному адресу!", "status": "error"}
             return data
-        data = {"message": "Регистрация прошла успешно!"}
+
+        data = {"message": "Регистрация прошла успешно!", "status": "done"}
     else:
-        data = {"message": "Пользователь с такими данными уже существует!"}
+        data = {"message": "Пользователь с такими данными уже существует!", "status": "error"}
+
     return data

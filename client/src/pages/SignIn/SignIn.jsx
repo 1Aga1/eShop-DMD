@@ -4,6 +4,7 @@ import SignInForm from "../../components/Forms/SignInForm/SignInForm";
 import logo from "../../images/logo.svg";
 
 const SignIn = () => {
+
     return (
         <div className={classes.block}>
             <div className={classes.signin__block}>

@@ -29,3 +29,10 @@ body, html {
 .main {
     margin: 40px 0 120px 0;
 }
+
+.alert {
+    color: #ff7a7a;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
