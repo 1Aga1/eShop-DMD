@@ -3,8 +3,30 @@ import classes from './General.module.css'
 import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
 import Footer from "../../components/Footer/Footer";
+import {Navigate} from "react-router-dom";
 
 const General = () => {
+
+    const getProducts = () => {
+        fetch("/api/general", {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then (response => {
+                if (response['user']['status'] === "auth") {
+
+                }
+                else {
+                    return <Navigate to='/signin'/>
+                }
+            })
+    }
+
+
     return (
         <div className="general">
             <Header></Header>
