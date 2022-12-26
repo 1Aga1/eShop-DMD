@@ -1,5 +1,2 @@
-from .registration import registration_router
-from .verification import verification_router
-from .authorization import authorization_router
-from .logout import logout_router
-from .game_page import game_page_router
+from .game import game_page_router, add_basket_router, add_favourites_router
+from .user import authorization_router, registration_router, verification_router, logout_router

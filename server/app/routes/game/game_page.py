@@ -1,6 +1,6 @@
-from flask import Blueprint, request, jsonify, make_response
-from ..decorators import login_required
-from ..services import getting_game_data, add_basket_game, add_favourites_game
+from flask import Blueprint, request, jsonify
+from server.app.decorators import login_required
+from ...services import getting_game_data
 
 game_page_router = Blueprint('GamePage', __name__, url_prefix="/api")
 
@@ -12,23 +12,23 @@ def game_page(data_user, game_id):
 
         return jsonify(game_data)
 
-    if request.method == "POST":
-        print("a")
-        action = request.get_json()
-        print(action)
-        if action['move'] == "basket":
-            if add_basket_game(game_id, data_user):
-                data = {"message": "Игра добавлена в корзину!"}
-            else:
-                data = {"message": "Что-то пошло не так!"}
-
-        if action['move'] == "favourites":
-            if add_favourites_game(game_id, data_user):
-                data = {"message": "Игра добавлена в избранное!"}
-            else:
-                data = {"message": "Что-то пошло не так!"}
-
-        return data
+    # if request.method == "POST":
+    #     print("a")
+    #     action = request.get_json()
+    #     print(action)
+    #     if action['move'] == "basket":
+    #         if add_basket_game(game_id, data_user):
+    #             data = {"message": "Игра добавлена в корзину!"}
+    #         else:
+    #             data = {"message": "Что-то пошло не так!"}
+    #
+    #     if action['move'] == "favourites":
+    #         if add_favourites_game(game_id, data_user):
+    #             data = {"message": "Игра добавлена в избранное!"}
+    #         else:
+    #             data = {"message": "Что-то пошло не так!"}
+    #
+    #     return data
 
 # Занесение игр в БД
 # db_insert(collections_product, {

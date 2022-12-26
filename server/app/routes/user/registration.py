@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services import registration
+from server.app.services import registration
 
 registration_router = Blueprint('SingUp', __name__, url_prefix="/api")
 

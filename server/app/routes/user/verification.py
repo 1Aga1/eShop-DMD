@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..configdb import db_connect, db_find, db_update
+from server.app.configdb import db_connect, db_find, db_update
 
 verification_router = Blueprint('Verification', __name__)
 
