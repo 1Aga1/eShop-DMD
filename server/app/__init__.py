@@ -4,6 +4,7 @@ import dotenv
 from .routes import registration_router, verification_router, authorization_router, logout_router, game_page_router
 
 app = Flask(__name__)
+
 dotenv.load_dotenv()
 
 app.register_blueprint(registration_router)

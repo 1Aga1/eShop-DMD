@@ -1,2 +1,2 @@
-from .authorization import authorization
-from .registration import registration
+from .auth_service import authorization
+from .register_service import registration
