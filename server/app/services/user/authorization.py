@@ -1,4 +1,4 @@
-from ..configdb import db_find, db_connect, db_update
+from server.app.configdb import db_find, db_connect, db_update
 from werkzeug.security import check_password_hash
 from uuid import uuid4
 

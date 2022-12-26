@@ -1,7 +1,7 @@
 from flask import Blueprint, request
-from ..configdb import db_connect, db_find,db_update
+from ..configdb import db_connect, db_find, db_update
 
-verification_router = Blueprint('Verification', __name__, url_prefix="/api")
+verification_router = Blueprint('Verification', __name__)
 
 @verification_router.get('/verification/<session>')
 def verification(session):

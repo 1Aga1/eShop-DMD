@@ -1,7 +1,7 @@
-from ..configdb import db_connect, db_insert, db_find
+from server.app.configdb import db_connect, db_insert, db_find
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
-from .sending_mail import send_mail
+from ..sending_mail import send_mail
 import os
 
 def registration(_username,_email,_password):
@@ -22,7 +22,9 @@ def registration(_username,_email,_password):
                                         "email": _email,
                                         "password": generate_password_hash(_password),
                                         "session": session,
-                                        "verified_account": 0
+                                        "verified_account": 0,
+                                        "favourites": [],
+                                        "cart": []
                                         })
         except:
             data = {"message": "Не удалось отправить письмо по указанному адресу!", "status": "error"}
