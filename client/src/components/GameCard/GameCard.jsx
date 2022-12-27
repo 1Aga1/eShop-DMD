@@ -28,7 +28,7 @@ const GameCard = ({maxWidth, fontSize, padding}) => {
                 <div className="add__to__basket">
                     <div className={classes.add__to__basket__bg}></div>
                     <div className={classes.btn__block}>
-                        <AddToBasketBtn>В корзину</AddToBasketBtn>
+                        <AddToBasketBtn></AddToBasketBtn>
                     </div>
                 </div>
             }

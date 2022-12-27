@@ -1,21 +1,23 @@
-from ...configdb import db_find, db_update, db_insert, db_connect
-from bson.objectid import ObjectId
-from flask import Blueprint
+from ...configdb import db_update,db_connect
+from flask import Blueprint, request
 from server.app.decorators import login_required
 
 add_basket_router = Blueprint('AddBasketRouter', __name__, url_prefix="/api")
 
 
-@add_basket_router.post('/add_basket_router')
+@add_basket_router.post('/add_basket')
 @login_required
-def add_basket(game_id, data_user):
+def add_basket(user):
+    game_id = request.get_json()['game_id']
+
     try:
         db = db_connect()
         collections = db.User
 
-        db_update(collections, {"_id": data_user["_id"]}, {"cart": game_id}, addToSet=True)
-        data = True
+        db_update(collections, {"_id": user["_id"]}, {"cart": game_id}, addToSet=True)
+        
+        data = {'user': user, 'status': 'done'}
     except:
-        data = False
+        data = {'user': user, 'status': 'error'}
 
     return data

@@ -1,21 +1,23 @@
-from server.app.configdb import db_find, db_update, db_insert, db_connect
-from bson.objectid import ObjectId
-from flask import Blueprint
+from server.app.configdb import db_update, db_connect
+from flask import Blueprint, request
 from server.app.decorators import login_required
 
 add_favourites_router = Blueprint('AddFavouritesRouter', __name__, url_prefix="/api")
 
 
-@add_favourites_router.post('/add_favourites_router')
+@add_favourites_router.post('/add_favourites')
 @login_required
-def add_favourites(game_id, data_user):
+def add_favourites(user):
+    game_id = request.get_json()['game_id']
+
     try:
         db = db_connect()
         collections = db.User
 
-        db_update(collections, {"_id": data_user["_id"]}, {"favourites": game_id}, addToSet=True)
-        data = True
+        db_update(collections, {"_id": user["_id"]}, {"favourites": game_id}, addToSet=True)
+
+        data = {'status': 'done'}
     except:
-        data = False
+        data = {'status': 'error'}
 
     return data

@@ -14,10 +14,34 @@ import trevor from "../../images/trevor.svg";
 import car from "../../images/car.svg";
 
 const GamePage = () => {
+    const getGameData = () => {
+        fetch("/api/general", {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then (response => {
+                if (response['user']['status'] === "auth") {
+                    setProductList(response['products']);
+                }
+                else {
+                    return <Navigate to='/signin'/>
+                }
+            })
+    }
+
+    useEffect(() => {
+        getProducts();
+        console.log(ProductList)    
+    });
+
     const [isShowScreenshots,SetShowScreenshots] = useState(true)
     const [isShowAbout,SetShowAbout] = useState(false)
-    const [isFavourites,SetFavourites] = useState(true)
-
+    const [isFavourites,SetFavourites] = useState(false)
+    
     const SwitchToScreenshots = () => {
         SetShowScreenshots(true);
         SetShowAbout(false);
@@ -29,7 +53,47 @@ const GamePage = () => {
     }
 
     const AddToFavourites = () => {
-        SetFavourites(!isFavourites)
+        fetch("/api/general", {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(game_id)
+        })
+            .then(response => response.json())
+            .then (response => {
+                if (response['user']['status'] === "auth") {
+                    if (response['status'] === "done") {
+                        SetFavourites(true);
+                    }
+                }
+                else {
+                    return <Navigate to='/signin'/>
+                }
+            })
+    }
+
+    const removeFavourites = () => {
+        fetch("/api/general", {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(game_id)
+        })
+            .then(response => response.json())
+            .then (response => {
+                if (response['user']['status'] === "auth") {
+                    if (response['status'] === "done") {
+                        SetFavourites(false);
+                    }
+                }
+                else {
+                    return <Navigate to='/signin'/>
+                }
+            })
     }
 
     return (
@@ -45,14 +109,24 @@ const GamePage = () => {
                             <div className={classes.game__info}>
                                 <div className={classes.title__block}>
                                     <h2 className={classes.title}>Grand Theft Auto V</h2>
-                                    <button className={classes.add_to_favourites__btn} onClick={AddToFavourites}>
-                                        {isFavourites && <div className={classes.in_favourites }></div>}
+                                    {!isFavourites && 
+                                        <button className={classes.add_to_favourites__btn} onClick={AddToFavourites}>
+                                            <div className={classes.add_to_favourites}></div>
+                                        </button>
+                                    }
+                                    {isFavourites && 
+                                        <button className={classes.add_to_favourites__btn} onClick={removeFavourites}>
+                                            <div className={classes.in_favourites}></div>
+                                        </button>
+                                    }
+                                    {/* <button className={classes.add_to_favourites__btn} onClick={AddToFavourites}>
+                                        {isFavourites && <div className={classes.in_favourites}></div>}
                                         {!isFavourites && <div className={classes.add_to_favourites}></div>}
-                                    </button>
+                                    </button> */}
                                 </div>
                                 <div className={classes.price__block}>
                                     <GamePrice style={{fontSize: "25px", padding: "10px 0", margin: "10px 20px 10px 0"}}></GamePrice>
-                                    <AddToBasketBtn>В корзину</AddToBasketBtn>
+                                    <AddToBasketBtn></AddToBasketBtn>
                                 </div>
                                 <div className={classes.game__main__info}>
                                     <div className={classes.game__main__info__item}>
