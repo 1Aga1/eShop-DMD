@@ -11,7 +11,7 @@ const General = () => {
     const [ProductList, setProductList] = useState([]);
 
     const getProducts = () => {
-        fetch("/api/general", {
+        fetch("http://localhost:5000/api/general", {
             method: "GET",
             cache: "no-cache",
             headers: {
@@ -27,7 +27,7 @@ const General = () => {
                     return <Navigate to='/signin'/>
                 }
             })
-    }
+    };
 
     useEffect(() => {
         getProducts();

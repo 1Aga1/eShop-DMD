@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classes from "./AddToBasketBtn.module.css";
+import {Navigate} from "react-router-dom";
 
 const AddToBasketBtn = ({children, ...props}) => {
 
@@ -13,7 +14,7 @@ const AddToBasketBtn = ({children, ...props}) => {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(game_id)
+            // body: JSON.stringify(game_id)
         })
             .then(response => response.json())
             .then (response => {
@@ -35,7 +36,7 @@ const AddToBasketBtn = ({children, ...props}) => {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(game_id)
+            // body: JSON.stringify(game_id)
         })
             .then(response => response.json())
             .then (response => {

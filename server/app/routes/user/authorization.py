@@ -14,7 +14,7 @@ def signup():
 
         data = authorization(_username, _password)
 
-        res = make_response(jsonify(data))
+        res = jsonify(make_response(data))
 
         res.set_cookie("session", data["session"], max_age=60*60*24*7)
 
