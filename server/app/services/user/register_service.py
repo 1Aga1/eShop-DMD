@@ -4,6 +4,7 @@ from uuid import uuid4
 from ..sending_mail import send_mail
 import os
 
+# Регистрация
 def registration(_username,_email,_password):
     db = db_connect()
     collections = db.Users

@@ -27,13 +27,20 @@ def db_find(collection, elements, multiple=False):
             print(f"БД -> '{err}'")
 
 # Обновление данных в БД
-def db_update(collection, elements, new_values, addToSet = False):
+
+# pull - Удаление эллемента массива
+# update - Простое занесение данных
+# push - Добавление эллемента в массив
+def db_update(collection, elements, new_values, pull=False, update=False, push=False):
     try:
-        if addToSet:
-            collection.update_one(elements, {"$set": new_values}, upsert=True)
-        else:
-            collection.update_one(elements, {"$addToSet": new_values}, upsert=True)
+        if push:
+            collection.update_one(elements, {"$push": new_values})
+        elif update:
+            collection.update_one(elements, new_values)
+        elif pull:
+            collection.update_one(elements, {"$pull": new_values})
         data = {"message": "done"}
     except:
         data = {"message": "error"}
+
     return data

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, make_response, request
 
 logout_router = Blueprint('logout', __name__)
 
+# Закрытие сессии
 @logout_router.get('/logout')
 def logout():
     data = {"status": "done"}

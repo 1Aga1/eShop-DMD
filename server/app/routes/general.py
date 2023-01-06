@@ -5,6 +5,7 @@ from ..configdb import db_connect, db_find
 
 general_router = Blueprint('General', __name__, url_prefix="/api")
 
+# Главная страница
 @general_router.route('/general', methods=["GET"])
 @login_required
 def general(user):

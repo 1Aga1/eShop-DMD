@@ -2,6 +2,7 @@ from ..configdb import db_connect, db_find
 from functools import wraps
 from flask import request
 
+# Проверка сессии
 def login_required(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):

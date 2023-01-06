@@ -4,6 +4,7 @@ from ...services import getting_game_data
 
 game_page_router = Blueprint('GamePage', __name__, url_prefix="/api")
 
+# Страница игры, подробна инфа о ней и ТД
 @game_page_router.route('/game/<game_id>', methods=["POST", "GET"])
 @login_required
 def game_page(data_user, game_id):

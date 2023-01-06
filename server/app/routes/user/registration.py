@@ -3,6 +3,7 @@ from server.app.services import registration
 
 registration_router = Blueprint('SingUp', __name__, url_prefix="/api")
 
+# Регистрация
 @registration_router.route('/register', methods=["POST"])
 def signup():
     if request.method == 'POST':

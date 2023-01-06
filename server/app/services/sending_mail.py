@@ -5,6 +5,7 @@ from email.message import EmailMessage
 senders_email = os.environ.get("EMAIL")
 email_password = os.environ.get("EMAIL_PASSWORD")
 
+# Отправка письма на почту с подтверждением
 def send_mail(_email, subject, text):
     try:
         msg = EmailMessage()

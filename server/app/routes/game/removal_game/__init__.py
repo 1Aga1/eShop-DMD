@@ -1,0 +1,2 @@
+from .removal_basket_game import removal_basket_router
+from .removal_favourites_game import removal_favourites_router

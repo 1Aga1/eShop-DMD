@@ -3,7 +3,7 @@ from server.app.services import authorization
 
 authorization_router = Blueprint('Authorization', __name__, url_prefix="/api")
 
-
+# Авторизация
 @authorization_router.route('/auth', methods=["POST"])
 def signup():
     if request.method == 'POST':
