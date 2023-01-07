@@ -20,7 +20,7 @@ def authorization(_username, _password):
             else:
                 data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
         else:
-            data ={"message": "Ваш аккаунт не подтвержден!", "status": "error"}
+            data = {"message": "Ваш аккаунт не подтвержден!", "status": "error"}
     else:
         data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
 
