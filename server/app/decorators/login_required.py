@@ -13,12 +13,14 @@ def login_required(fn):
         collections = db.Users
 
         if not session:
-            return fn(data, *args, **kwargs)
+            return data
 
         if db_find(collections, {"session": session, "verified_account": 1}) != None:
             data = {"session": db_find(collections, {"session": session})["session"],
                     "username": db_find(collections, {"session": session})["username"],
                     "status": "auth"}
+        else:
+            return data
 
         return fn(data, *args, **kwargs)
 

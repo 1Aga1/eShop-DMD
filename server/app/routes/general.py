@@ -1,20 +1,21 @@
 from flask import Blueprint, jsonify
 
-from ..decorators.login_required import login_required
 from ..configdb import db_connect, db_find
 
 general_router = Blueprint('General', __name__, url_prefix="/api")
 
 # Главная страница
 @general_router.route('/general', methods=["GET"])
-@login_required
-def general(user):
+def general():
     db = db_connect()
     collections = db.Product
 
-    products = db_find(collections, {})
+    products = db_find(collections, {}, multiple=True)
 
-    data = {'user': user, 'products': products}
+    for product in products:
+        product['_id'] = str(product['_id'])
+
+    data = {'products': products}
 
     return jsonify(data)
 

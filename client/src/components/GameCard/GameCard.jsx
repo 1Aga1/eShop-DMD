@@ -4,7 +4,7 @@ import gta5logo from "../../images/gta 5 logo.svg";
 import GamePrice from "./GamePrice";
 import AddToBasketBtn from "../UI/MyButton/AddToBasket/AddToBasketBtn";
 
-const GameCard = ({maxWidth, fontSize, padding}) => {
+const GameCard = (props) => {
     const [isShowAddToBasket, SetShowAddToBasket] = useState(false);
 
     const ShowAddToBasket = () => {
@@ -16,12 +16,16 @@ const GameCard = ({maxWidth, fontSize, padding}) => {
     };
 
     return (
-        <a href="/game/id123123" style={{maxWidth: maxWidth}} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
+        <a href="/game/id" style={{maxWidth: props.maxWidth}} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <div className={classes.game__card}>
                 <img src={gta5logo} alt=""/>
                 <div className={classes.card__info}>
-                    <p className={classes.game__name} style={{fontSize: fontSize, padding: padding}}>Grand Theft Auto V</p>
-                    <GamePrice style={{fontSize: fontSize, padding: padding}}></GamePrice>
+                    <p className={classes.game__name} style={{fontSize: props.fontSize, padding: props.padding}}>{props.name}</p>
+                    <GamePrice style={{fontSize: props.fontSize, padding: props.padding}}
+                               cost={props.cost}
+                               discount={props.discount}
+                               discount_percent={props.discount_percent}>
+                    </GamePrice>
                 </div>
             </div>
             {isShowAddToBasket &&

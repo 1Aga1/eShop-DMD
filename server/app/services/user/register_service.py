@@ -31,7 +31,7 @@ def registration(_username,_email,_password):
             data = {"message": "Не удалось отправить письмо по указанному адресу!", "status": "error"}
             return data
 
-        data = {"message": "Регистрация прошла успешно!", "status": "done"}
+        data = {"message": "Инструкция отправлена на почту!", "status": "done"}
     else:
         data = {"message": "Пользователь с такими данными уже существует!", "status": "error"}
 

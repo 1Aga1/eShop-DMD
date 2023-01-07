@@ -10,19 +10,19 @@ const SignInForm = () => {
         password: ''
     })
 
-    const [alert, setAlert] = useState()
+    const [alert, setAlert] = useState("")
 
     const postUserData = () => {
+        setAlert("")
         fetch("/api/auth", {
             method: "POST",
             cache: "no-cache",
-            header: {
+            headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(UserData)
         }).then(response => response.json())
             .then (response => {
-                console.log(response)
                 if (response['status'] === "error") {
                     setAlert(response['message'])
                 }

@@ -14,8 +14,12 @@ def signup():
 
         data = authorization(_username, _password)
 
-        res = jsonify(make_response(data))
+        if data['status'] != "error":
+            res = make_response(data)
 
-        res.set_cookie("session", data["session"], max_age=60*60*24*7)
+            res.set_cookie("session", data["session"], max_age=60*60*24*7)
 
-        return res
+            return res
+
+        else:
+            return jsonify(data)

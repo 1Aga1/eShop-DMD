@@ -3,13 +3,16 @@ import classes from "./GameCard.module.css";
 
 const GamePrice = (props) => {
     return (
-        /*Если нет скидки, то рендерим это*/
-        /*<p className={classes.game__price}>1999 руб.</p>*/
-        /*Если есть скидка, то рендерим это*/
-        <div className={classes.game__price} {...props}>
-            <p className={classes.new__price}>999 ₽</p>
-            <p className={classes.old__price}>1999 ₽</p>
-            <div className={classes.discount}>-50%</div>
+        <div>
+            {props.discount_percent !== ""
+            ? <div className={classes.game__price} style={props.style}>
+                    <p className={classes.new__price}>{props.discount} ₽</p>
+                    <p className={classes.old__price}>{props.cost} ₽</p>
+                    <div className={classes.discount}>{props.discount_percent}</div>
+                </div>
+                :<p className={classes.game__price}>{props.cost} руб.</p>
+            }
+
         </div>
     );
 };

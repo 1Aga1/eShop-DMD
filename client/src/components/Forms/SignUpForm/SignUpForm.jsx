@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Navigate} from 'react-router-dom'
 import SignInput from "../../UI/MyInput/Sign/SignInput";
 import SignButton from "../../UI/MyButton/Sign/SignButton";
 import classes from "./SignUpForm.module.css";
@@ -25,12 +24,7 @@ const SignUpForm = () => {
         })
             .then(response => response.json())
             .then (response => {
-                if (response['status'] === "error") {
-                    setAlert(response['message'])
-                }
-                else {
-                    return <Navigate to='/general'/>
-                }
+                setAlert(response['message'])
             })
     }
 

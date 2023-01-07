@@ -17,4 +17,7 @@ def verification(session):
             status = {"message": "Что-то пошло не так!", "status": "error"}
     else:
         status = {"message": "Ваш аккаунт уже подтвержден!", "status": "done"}
+
+    print(status)
+
     return status

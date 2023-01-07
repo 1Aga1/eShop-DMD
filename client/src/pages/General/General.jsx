@@ -3,15 +3,13 @@ import classes from './General.module.css'
 import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
 import Footer from "../../components/Footer/Footer";
-import { Navigate } from "react-router-dom";
 import { useEffect } from 'react';
 
 const General = () => {
-
     const [ProductList, setProductList] = useState([]);
 
     const getProducts = () => {
-        fetch("http://localhost:5000/api/general", {
+        fetch("/api/general", {
             method: "GET",
             cache: "no-cache",
             headers: {
@@ -20,15 +18,15 @@ const General = () => {
         })
             .then(response => response.json())
             .then (response => {
-                console.log(response)
                 setProductList(response['products']);
             })
     };
 
     useEffect(() => {
-        getProducts();
-    });
+        getProducts()
+    }, []);
 
+    console.log(ProductList)
 
     return (
         <div className="general">
@@ -40,12 +38,16 @@ const General = () => {
                             <h1 className={classes.title}>Каталог товаров</h1>
                         </div>
                         <div className={classes.game__list}>
-                            <GameCard></GameCard>
-                            <GameCard></GameCard>
-                            <GameCard></GameCard>
-                            <GameCard></GameCard>
-                            <GameCard></GameCard>
-                            <GameCard></GameCard>
+                            {ProductList.map((product) =>
+                                <GameCard
+                                    key={product['_id']}
+                                    name={product['name']}
+                                    cost={product['cost']}
+                                    discount={product['discount']}
+                                    discount_percent={product['discount_percent']}>
+
+                                </GameCard>
+                            )}
                         </div>
                     </div>
                 </div>
