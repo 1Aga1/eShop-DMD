@@ -36,7 +36,7 @@ def db_update(collection, elements, new_values, pull=False, update=False, push=F
         if push:
             collection.update_one(elements, {"$push": new_values})
         elif update:
-            collection.update_one(elements, new_values)
+            collection.update_one(elements, {"$set": new_values})
         elif pull:
             collection.update_one(elements, {"$pull": new_values})
         data = {"message": "done"}

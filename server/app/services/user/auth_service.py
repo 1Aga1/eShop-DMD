@@ -8,16 +8,19 @@ from server.app.configdb import db_find, db_connect, db_update
 def authorization(_username, _password):
     db = db_connect()
     collections = db.Users
-    if db_find(collections, {"username": _username}) != None:
-        password = db_find(collections, {"username": _username})
+    if (db_find(collections, {"username": _username}) != None):
+        if (db_find(collections, {"username": _username})["verified_account"] == 1):
+            password = db_find(collections, {"username": _username})
 
-        if check_password_hash(password["password"], _password):
-            session = str(uuid4())
-            db_update(collections, {"username": _username}, {"session": session}, update=True)
-            data = {"session": session, "username": _username, "status": "done"}
+            if check_password_hash(password["password"], _password):
+                session = str(uuid4())
+                db_update(collections, {"username": _username}, {"session": session}, update=True)
+                data = {"session": session, "username": _username, "status": "done"}
 
+            else:
+                data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
         else:
-            data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
+            data ={"message": "Ваш аккаунт не подтвержден!", "status": "error"}
     else:
         data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
 
