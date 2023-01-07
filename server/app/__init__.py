@@ -1,8 +1,9 @@
-from flask import Flask
-from flask_cors import CORS
 import dotenv
 
-from .routes import registration_router, verification_router, authorization_router, logout_router, game_page_router, add_basket_router, add_favourites_router, removal_favourites_router, removal_basket_router
+from flask import Flask
+from flask_cors import CORS
+
+from .routes import *
 
 app = Flask(__name__)
 CORS(app)
@@ -17,5 +18,9 @@ app.register_blueprint(game_page_router)
 
 app.register_blueprint(add_basket_router)
 app.register_blueprint(add_favourites_router)
+
 app.register_blueprint(removal_favourites_router)
 app.register_blueprint(removal_basket_router)
+
+app.register_blueprint(general_router)
+

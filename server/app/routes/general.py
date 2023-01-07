@@ -12,10 +12,6 @@ def general(user):
     db = db_connect()
     collections = db.Product
 
-    if user['status'] == 'unauth':
-        data = {'user': user, 'products': None}
-        return jsonify(data)
-
     products = db_find(collections, {})
 
     data = {'user': user, 'products': products}
