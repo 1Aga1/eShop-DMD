@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect
+from server.app.configdb import db_update, db_connect, db_find
 from flask import Blueprint, request
 from server.app.decorators import login_required
 
@@ -13,9 +13,11 @@ def add_basket(user):
         session = user["session"]
         db = db_connect()
         collections = db.Users
-
-        db_update(collections, {"session": session}, {"cart": game_id}, push=True)
-        data = {'user': user, 'status': 'done'}
+        if db_find(collections, {"session": session, "cart": game_id}) == None:
+            db_update(collections, {"session": session}, {"cart": game_id}, push=True)
+            data = {'user': user, 'status': 'done'}
+        else:
+            data = {'user': user, 'status': 'message', "message": "Игра уже у вас в корзине!"}
     except:
         data = {'user': user, 'status': 'error'}
 

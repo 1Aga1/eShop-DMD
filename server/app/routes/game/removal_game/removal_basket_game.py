@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect
+from server.app.configdb import db_update, db_connect, db_find
 from flask import Blueprint, request
 from server.app.decorators import login_required
 

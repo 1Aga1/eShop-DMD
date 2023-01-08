@@ -14,6 +14,8 @@ app.register_blueprint(registration_router)
 app.register_blueprint(verification_router)
 app.register_blueprint(authorization_router)
 app.register_blueprint(logout_router)
+app.register_blueprint(profile_router)
+
 app.register_blueprint(game_page_router)
 
 app.register_blueprint(add_basket_router)
@@ -23,4 +25,3 @@ app.register_blueprint(removal_favourites_router)
 app.register_blueprint(removal_basket_router)
 
 app.register_blueprint(general_router)
-
