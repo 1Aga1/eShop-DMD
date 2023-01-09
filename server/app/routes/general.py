@@ -18,6 +18,3 @@ def general():
     data = {'products': products}
 
     return jsonify(data)
-
-
-

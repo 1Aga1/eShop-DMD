@@ -14,10 +14,11 @@ app.register_blueprint(registration_router)
 app.register_blueprint(verification_router)
 app.register_blueprint(authorization_router)
 app.register_blueprint(logout_router)
-
 app.register_blueprint(login_required_router)
 
 app.register_blueprint(general_router)
+
+app.register_blueprint(profile_router)
 
 app.register_blueprint(game_page_router)
 

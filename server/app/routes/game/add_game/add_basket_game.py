@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect
+from server.app.configdb import db_update, db_connect, db_find
 from flask import Blueprint, request
 
 add_basket_router = Blueprint('AddBasketRouter', __name__, url_prefix="/api")
@@ -13,8 +13,11 @@ def add_basket():
         db = db_connect()
         collections = db.Users
 
-        db_update(collections, {"session": session}, {"cart": game_id}, push=True)
-        data = {'status': 'done'}
+        if db_find(collections, {"session": session, "cart": game_id}) == None:
+            db_update(collections, {"session": session}, {"cart": game_id}, push=True)
+            data = {'status': 'done'}
+        else:
+            data = {'status': 'error', "message": "Игра уже у вас в корзине!"}
     except:
         data = {'status': 'error'}
 
