@@ -4,7 +4,7 @@ from flask import Blueprint, request
 removal_favourites_router = Blueprint('RemovalFavouritesRouter', __name__, url_prefix="/api")
 
 # Удаление игры из избранного
-@removal_favourites_router.post('/removal_favourites')
+@removal_favourites_router.post('/remove_favourites')
 def removal_favourites(user):
     game_id = request.get_json()["game_id"]
     try:

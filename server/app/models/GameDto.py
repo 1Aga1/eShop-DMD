@@ -5,7 +5,7 @@ class GameDto:
         self.cost = object['cost']
         self.discount = object['discount']
         self.information_game = object['information_game']
-        self.abaut_game = object['abaut_game']
+        self.about_game = object['about_game']
         self.screenshots = object['screenshots']
         self.picture = object['picture']
 

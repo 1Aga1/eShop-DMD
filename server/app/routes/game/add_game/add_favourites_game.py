@@ -16,7 +16,7 @@ def add_favourites(user):
             db_update(collections, {"session": session}, {"favourites": game_id}, push=True)
             data = {'user': user, 'status': 'done'}
         else:
-            data = {'user': user, 'status': 'message', "message": "Игра уже добавлена в избранное!"}
+            data = {'user': user, 'status': 'error', "message": "Игра уже добавлена в избранное!"}
     except:
         data = {'user': user, 'status': 'error'}
 

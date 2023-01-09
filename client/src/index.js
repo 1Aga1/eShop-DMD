@@ -24,12 +24,14 @@ const Main = () => {
         })
             .then(response => response.json())
             .then (response => {
-                setUserId(response['id']);
-                setUsername(response['username']);
-                setAdmin(response['isAdmin']);
-                setAuthStatus(response['status']);
-                setUserCart(response['cart']);
-                setUserFavourites(response['favourites'])
+                if (response['status'] === "auth") {
+                    setUserId(response['id']);
+                    setUsername(response['username']);
+                    setAdmin(response['isAdmin']);
+                    setAuthStatus(response['status']);
+                    setUserCart(response['cart']);
+                    setUserFavourites(response['favourites'])
+                }
             });
 
     }, []);

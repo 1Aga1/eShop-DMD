@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
-
+import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import GamePrice from "../../components/GameCard/GamePrice";
-import GameCard from "../../components/GameCard/GameCard";
 import AddToBasketBtn from "../../components/UI/MyButton/AddToBasket/AddToBasketBtn";
 import ScreenshotsAndAboutBtn from "../../components/UI/MyButton/ScreenshotsAndAbout/ScreenshotsAndAboutBtn";
 import Footer from "../../components/Footer/Footer";
@@ -12,26 +10,26 @@ import classes from "./GamePage.module.css";
 import gta5logo from "../../images/gta 5 logo.svg";
 import trevor from "../../images/trevor.svg";
 import car from "../../images/car.svg";
+import {useLocation} from "react-router-dom";
 
 const GamePage = () => {
-    // const getGameData = () => {
-    //     fetch("/api/general", {
-    //         method: "GET",
-    //         cache: "no-cache",
-    //         headers: {
-    //             "content-type": "application/json"
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then (response => {
-    //             if (response['user']['status'] === "auth") {
-    //                 setProductList(response['products']);
-    //             }
-    //             else {
-    //                 return <Navigate to='/signin'/>
-    //             }
-    //         })
-    // }
+    const [GameData, setGameData] = useState({});
+
+    const location = useLocation();
+
+    useEffect(() => {
+        fetch("/api/"+location.pathname, {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then (response => {
+                setGameData(response);
+            });
+    });
     //
     // useEffect(() => {
     //     getProducts();
@@ -146,13 +144,13 @@ const GamePage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={classes.similar__games}>
-                                <h3 className={classes.title}>Похожие игры</h3>
-                                <div className={classes.card__block}>
-                                    <GameCard maxWidth="145px" fontSize="14px" padding="5px"></GameCard>
-                                    <GameCard maxWidth="145px" fontSize="14px" padding="5px"></GameCard>
-                                </div>
-                            </div>
+                            {/*<div className={classes.similar__games}>*/}
+                            {/*    <h3 className={classes.title}>Похожие игры</h3>*/}
+                            {/*    <div className={classes.card__block}>*/}
+                            {/*        <GameCard maxWidth="145px" fontSize="14px" padding="5px"></GameCard>*/}
+                            {/*        <GameCard maxWidth="145px" fontSize="14px" padding="5px"></GameCard>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                             <div className={classes.game__about__screenshots}>
                                 <div className={classes.btn__block}>
                                     <ScreenshotsAndAboutBtn onClick={SwitchToScreenshots}>Скриншоты</ScreenshotsAndAboutBtn>

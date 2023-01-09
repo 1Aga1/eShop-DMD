@@ -4,11 +4,10 @@ import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
 import Footer from "../../components/Footer/Footer";
 import {UserStatus} from "../../UserStatus";
+import {useNavigate} from "react-router-dom";
 
 const General = () => {
     const [ProductList, setProductList] = useState([]);
-
-    const {authStatus} = useContext(UserStatus)
 
     useEffect(() => {
         fetch("/api/general", {
