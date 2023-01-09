@@ -8,6 +8,7 @@ class UserDto:
         self.verified_account = object['verified_account']
         self.favourites = object['favourites']
         self.cart = object['cart']
+        self.isAdmin = object['isAdmin']
 
     def get_dict(self):
         return self.__dict__

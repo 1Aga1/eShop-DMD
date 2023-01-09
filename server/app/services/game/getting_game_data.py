@@ -1,14 +1,15 @@
 from ...configdb import db_find, db_connect
-from server.app.models.GameDto import GameDto
+from ...models.GameDto import GameDto
+from bson import ObjectId
+
 
 # Получение данных о игре
 def getting_game_data(game_id):
     db = db_connect()
-    collections_product = db.Product
+    collections = db.Product
 
-    game_data = db_find(collections_product, {"_id": game_id})
+    game_data = db_find(collections, {"_id": ObjectId(game_id)}, multiple=True)
 
-    print(game_data)
-    new_game_data = GameDto(game_data).get_dict()
+    new_game_data = [GameDto(game).get_dict() for game in game_data]
 
     return new_game_data
