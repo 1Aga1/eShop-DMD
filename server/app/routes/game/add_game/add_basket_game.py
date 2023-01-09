@@ -1,22 +1,21 @@
 from server.app.configdb import db_update, db_connect
 from flask import Blueprint, request
-from server.app.decorators import login_required
 
 add_basket_router = Blueprint('AddBasketRouter', __name__, url_prefix="/api")
 
 # Добавление игры в корзину
 @add_basket_router.post('/add_basket')
-@login_required
-def add_basket(user):
+def add_basket():
     game_id = request.get_json()["game_id"]
+
     try:
-        session = user["session"]
+        session = request.cookies.get("session")
         db = db_connect()
         collections = db.Users
 
         db_update(collections, {"session": session}, {"cart": game_id}, push=True)
-        data = {'user': user, 'status': 'done'}
+        data = {'status': 'done'}
     except:
-        data = {'user': user, 'status': 'error'}
+        data = {'status': 'error'}
 
     return data

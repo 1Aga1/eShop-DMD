@@ -16,11 +16,10 @@ def authorization(_username, _password):
                 session = str(uuid4())
                 db_update(collections, {"username": _username}, {"session": session}, update=True)
                 data = {"session": session, "username": _username, "status": "done"}
-
             else:
                 data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
         else:
-            data = {"message": "Ваш аккаунт не подтвержден!", "status": "error"}
+            data = {"message": "Ваш аккаунт не подтвержден! Проверьте почту.", "status": "error"}
     else:
         data = {"message": "Неверный пароль или имя пользователя!", "status": "error"}
 

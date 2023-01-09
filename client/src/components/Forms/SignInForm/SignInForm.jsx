@@ -1,16 +1,21 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import SignInput from "../../UI/MyInput/Sign/SignInput";
 import SignButton from "../../UI/MyButton/Sign/SignButton";
 import classes from "./SignInForm.module.css";
-import {Navigate} from "react-router-dom";
+import {UserStatus} from "../../../UserStatus";
 
 const SignInForm = () => {
+    const {setAuthStatus} = useContext(UserStatus);
+
     const [UserData, setUserData] = useState({
         username: '',
         password: ''
-    })
+    });
 
-    const [alert, setAlert] = useState("")
+    const [alert, setAlert] = useState("");
+
+    const navigate = useNavigate();
 
     const postUserData = () => {
         setAlert("")
@@ -27,13 +32,14 @@ const SignInForm = () => {
                     setAlert(response['message'])
                 }
                 else {
-                    return <Navigate to='/general'/>
-                }
-            })
-    }
+                    setAuthStatus("auth");
+                    return navigate("/general");
+                };
+            });
+    };
 
     return (
-        <form action="" className={classes.signup__form}>
+        <form className={classes.signup__form}>
             <h2 className={classes.title}>Авторизация</h2>
             <SignInput
                 type="text"

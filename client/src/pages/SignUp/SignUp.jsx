@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import SignUpForm from "../../components/Forms/SignUpForm/SignUpForm";
 import classes from "./SignUp.module.css";
 import logo from '../../images/logo.svg'
+import {UserStatus} from "../../UserStatus";
+import {useNavigate} from "react-router-dom";
 
 const SignUp = () => {
+    const {authStatus} = useContext(UserStatus);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authStatus === "auth") {
+            navigate("/general");
+        };
+    });
+
     return (
         <div className={classes.block}>
             <div className={classes.signup__block}>

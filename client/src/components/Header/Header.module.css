@@ -101,7 +101,12 @@
     color: #1E0050;
 }
 
-@media (max-width: 808px) {
+.profile {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@media (max-width: 920px) {
     .menu {
         position: absolute;
         flex-direction: column;
@@ -111,11 +116,7 @@
         background-color: #10002B;
     }
 
-    .menu__item {
-        margin: 15px 0;
-    }
-
-    .sign__btn {
+    .menu__item, .sign__btn, .profile {
         margin: 15px 0;
     }
 

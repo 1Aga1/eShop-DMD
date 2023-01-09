@@ -5,6 +5,7 @@ import General from "./pages/General/General";
 import GamePage from "./pages/GamePage/GamePage";
 import Favourites from './pages/Favourites/Favourites'
 import Basket from "./pages/Basket/Basket";
+import Profile from "./pages/Profile/Profile";
 
 const Router = () => {
     return useRoutes([
@@ -21,13 +22,16 @@ const Router = () => {
             path: "/general", element: <General/>
         },
         {
-            path: "/game/id:number", element: <GamePage/>
+            path: "/game/:number", element: <GamePage/>
         },
         {
             path: "/favourites", element: <Favourites/>
         },
         {
             path: "/basket", element: <Basket/>
+        },
+        {
+            path: "/profile/:number", element: <Profile/>
         }
     ])
 }

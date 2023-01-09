@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, jsonify
 from server.app.configdb import db_connect, db_find, db_update
 
 verification_router = Blueprint('Verification', __name__)
@@ -18,6 +18,4 @@ def verification(session):
     else:
         status = {"message": "Ваш аккаунт уже подтвержден!", "status": "done"}
 
-    print(status)
-
-    return status
+    return jsonify(status)

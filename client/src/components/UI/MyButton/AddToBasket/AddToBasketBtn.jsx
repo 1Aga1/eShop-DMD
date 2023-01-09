@@ -1,60 +1,50 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from "./AddToBasketBtn.module.css";
-import {Navigate} from "react-router-dom";
 
-const AddToBasketBtn = ({children, ...props}) => {
-
-    const [inBasket, setInBasket] = useState(false);
-
+const AddToBasketBtn = ({basketStatus, setBasketStatus, game_id}) => {
 
     const addBasket = () => {
         fetch("/api/add_basket", {
-            method: "GET",
+            method: "POST",
             cache: "no-cache",
             headers: {
                 "content-type": "application/json"
             },
-            // body: JSON.stringify(game_id)
+            body: JSON.stringify({"game_id": game_id})
         })
             .then(response => response.json())
             .then (response => {
-                if (response['user']['status'] === "auth") {
-                    if (response['status'] === "done") {
-                        setInBasket(true);
-                    }                
-                }
-                else {
-                    return <Navigate to='/signin'/>
-                }
-            })
-    }
+                if (response['status'] === "done") {
+                    setBasketStatus(true);
+                };
+            });
+    };
 
     const removeBasket = () => {
         fetch("/api/remove_basket", {
-            method: "GET",
+            method: "POST",
             cache: "no-cache",
             headers: {
                 "content-type": "application/json"
             },
-            // body: JSON.stringify(game_id)
+            body: JSON.stringify({"game_id": game_id})
         })
             .then(response => response.json())
             .then (response => {
-                if (response['user']['status'] === "auth") {
-                    if (response['status'] === "done") {
-                        setInBasket(false);
-                    }                
-                }
-                else {
-                    return <Navigate to='/signin'/>
-                }
-            })
-    }
+                if (response['status'] === "done") {
+                    setBasketStatus(false);
+                };
+            });
+    };
 
     return (
         <div>
-            {!inBasket && <button className={classes.button} {...props} onClick={addBasket}>В корзину</button>}
-            {inBasket && <button className={classes.button} {...props} onClick={removeBasket}>Убрать</button>}
+            {
+                basketStatus === false
+                    ? <button className={classes.button} onClick={addBasket}>В корзину</button>
+                    : <button className={classes.button} onClick={removeBasket}>Убрать</button>
+            }
+
         </div>
         
     );

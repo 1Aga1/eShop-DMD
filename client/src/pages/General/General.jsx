@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import classes from './General.module.css'
 import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
 import Footer from "../../components/Footer/Footer";
-import { useEffect } from 'react';
+import {UserStatus} from "../../UserStatus";
 
 const General = () => {
     const [ProductList, setProductList] = useState([]);
 
-    const getProducts = () => {
+    const {authStatus} = useContext(UserStatus)
+
+    useEffect(() => {
         fetch("/api/general", {
             method: "GET",
             cache: "no-cache",
@@ -20,13 +22,7 @@ const General = () => {
             .then (response => {
                 setProductList(response['products']);
             })
-    };
-
-    useEffect(() => {
-        getProducts()
     }, []);
-
-    console.log(ProductList)
 
     return (
         <div className="general">
@@ -41,11 +37,11 @@ const General = () => {
                             {ProductList.map((product) =>
                                 <GameCard
                                     key={product['_id']}
+                                    id={product['_id']}
                                     name={product['name']}
                                     cost={product['cost']}
                                     discount={product['discount']}
                                     discount_percent={product['discount_percent']}>
-
                                 </GameCard>
                             )}
                         </div>

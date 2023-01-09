@@ -14,29 +14,29 @@ import trevor from "../../images/trevor.svg";
 import car from "../../images/car.svg";
 
 const GamePage = () => {
-    const getGameData = () => {
-        fetch("/api/general", {
-            method: "GET",
-            cache: "no-cache",
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then (response => {
-                if (response['user']['status'] === "auth") {
-                    setProductList(response['products']);
-                }
-                else {
-                    return <Navigate to='/signin'/>
-                }
-            })
-    }
-
-    useEffect(() => {
-        getProducts();
-        console.log(ProductList)    
-    });
+    // const getGameData = () => {
+    //     fetch("/api/general", {
+    //         method: "GET",
+    //         cache: "no-cache",
+    //         headers: {
+    //             "content-type": "application/json"
+    //         }
+    //     })
+    //         .then(response => response.json())
+    //         .then (response => {
+    //             if (response['user']['status'] === "auth") {
+    //                 setProductList(response['products']);
+    //             }
+    //             else {
+    //                 return <Navigate to='/signin'/>
+    //             }
+    //         })
+    // }
+    //
+    // useEffect(() => {
+    //     getProducts();
+    //     console.log(ProductList)
+    // });
 
     const [isShowScreenshots,SetShowScreenshots] = useState(true)
     const [isShowAbout,SetShowAbout] = useState(false)
@@ -52,49 +52,49 @@ const GamePage = () => {
         SetShowAbout(true);
     }
 
-    const AddToFavourites = () => {
-        fetch("/api/general", {
-            method: "GET",
-            cache: "no-cache",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(game_id)
-        })
-            .then(response => response.json())
-            .then (response => {
-                if (response['user']['status'] === "auth") {
-                    if (response['status'] === "done") {
-                        SetFavourites(true);
-                    }
-                }
-                else {
-                    return <Navigate to='/signin'/>
-                }
-            })
-    }
+    // const AddToFavourites = () => {
+    //     fetch("/api/general", {
+    //         method: "GET",
+    //         cache: "no-cache",
+    //         headers: {
+    //             "content-type": "application/json"
+    //         },
+    //         body: JSON.stringify(game_id)
+    //     })
+    //         .then(response => response.json())
+    //         .then (response => {
+    //             if (response['user']['status'] === "auth") {
+    //                 if (response['status'] === "done") {
+    //                     SetFavourites(true);
+    //                 }
+    //             }
+    //             else {
+    //                 return <Navigate to='/signin'/>
+    //             }
+    //         })
+    // }
 
-    const removeFavourites = () => {
-        fetch("/api/general", {
-            method: "GET",
-            cache: "no-cache",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(game_id)
-        })
-            .then(response => response.json())
-            .then (response => {
-                if (response['user']['status'] === "auth") {
-                    if (response['status'] === "done") {
-                        SetFavourites(false);
-                    }
-                }
-                else {
-                    return <Navigate to='/signin'/>
-                }
-            })
-    }
+    // const removeFavourites = () => {
+    //     fetch("/api/general", {
+    //         method: "GET",
+    //         cache: "no-cache",
+    //         headers: {
+    //             "content-type": "application/json"
+    //         },
+    //         body: JSON.stringify(game_id)
+    //     })
+    //         .then(response => response.json())
+    //         .then (response => {
+    //             if (response['user']['status'] === "auth") {
+    //                 if (response['status'] === "done") {
+    //                     SetFavourites(false);
+    //                 }
+    //             }
+    //             else {
+    //                 return <Navigate to='/signin'/>
+    //             }
+    //         })
+    // }
 
     return (
         <div className="game__page">
@@ -109,13 +109,12 @@ const GamePage = () => {
                             <div className={classes.game__info}>
                                 <div className={classes.title__block}>
                                     <h2 className={classes.title}>Grand Theft Auto V</h2>
-                                    {!isFavourites && 
-                                        <button className={classes.add_to_favourites__btn} onClick={AddToFavourites}>
+                                    {isFavourites === true ?
+                                        <button className={classes.add_to_favourites__btn}>
                                             <div className={classes.add_to_favourites}></div>
                                         </button>
-                                    }
-                                    {isFavourites && 
-                                        <button className={classes.add_to_favourites__btn} onClick={removeFavourites}>
+                                        :
+                                        <button className={classes.add_to_favourites__btn}>
                                             <div className={classes.in_favourites}></div>
                                         </button>
                                     }
