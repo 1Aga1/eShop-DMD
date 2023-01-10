@@ -1,14 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import BigGameCard from "../../components/GameCard/BigGameCard";
 import Footer from "../../components/Footer/Footer";
 import classes from "./Basket.module.css"
-import {UserStatus} from "../../UserStatus";
 
 const Basket = () => {
     const [GameList, setGameList] = useState([]);
     const [TotalPrice, setTotalPrice] = useState();
-    const {userBasket} = useContext(UserStatus)
 
     useEffect(() => {
         fetch("/api/basket", {
@@ -16,15 +14,14 @@ const Basket = () => {
             cache: "no-cache",
             headers: {
                 "content-type": "application/json"
-            },
-            body: JSON.stringify({"userBasket": userBasket})
+            }
         })
             .then(response => response.json())
             .then (response => {
                 setGameList(response['products']);
                 setTotalPrice(response['total_price']);
             });
-    })
+    }, [])
 
     return (
         <div className="basket">
@@ -37,16 +34,21 @@ const Basket = () => {
                             </div>
                             <div className={classes.content}>
                                 <div className={classes.basket__list}>
-                                    {GameList.map((game) =>
-                                        <BigGameCard>
-                                            key={game['id']}
-                                            id={game['id']}
-                                            name={game['name']}
-                                            cost={game['cost']}
-                                            discount={game['discount']}
-                                            discount_percent={game['discount_percent']}>
-                                        </BigGameCard>
-                                    )}
+                                    {GameList === []
+                                        ?
+                                            <p>В корзине пусто :(</p>
+                                        :
+                                            GameList.map((game) =>
+                                                <BigGameCard
+                                                    key={game['id']}
+                                                    id={game['id']}
+                                                    name={game['name']}
+                                                    cost={game['cost']}
+                                                    discount={game['discount']}
+                                                    discount_percent={game['discount_percent']}>
+                                                </BigGameCard>
+                                            )
+                                    }
                                 </div>
                                 <div className={classes.basket__total}>
                                     <p className={classes.total__text}>Итого:</p>

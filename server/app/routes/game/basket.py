@@ -6,24 +6,31 @@ from bson import ObjectId
 basket_router = Blueprint('Basket', __name__, url_prefix="/api")
 
 # Страница игры, подробна инфа о ней и ТД
-@basket_router.route('/basket', methods=["POST", "GET"])
+@basket_router.route('/basket')
 def basket():
-    if request.method == 'GET':
-        db = db_connect()
-        collections = db.Product
-        new_game_data = []
-        total_price = 0
+    db = db_connect()
+    collections = db.Users
+    new_game_data = []
+    total_price = 0
 
-        basket = request.get_json()["userBasket"]
+    session = request.cookies.get("session")
 
-        for game_id in basket:
-            game_data = db_find(collections, {"_id": ObjectId(game_id)})
-            new_game_data.append(GameDto(game_data).get_dict())
+    user_basket = db_find(collections, {"session": session})['cart']
+
+    collections = db.Product
+
+    for game_id in user_basket:
+        game_data = db_find(collections, {"_id": ObjectId(game_id)})
+        new_game_data.append(GameDto(game_data).get_dict())
+
+        if game_data['discount_percent'] == "":
+            total_price += int(game_data["cost"])
+        else:
             total_price += int(game_data["discount"])
 
-        data = {
-            "user_data": new_game_data,
-            "total_price": total_price
-        }
-        print(data)
-        return jsonify(new_game_data)
+    data = {
+        "products": new_game_data,
+        "total_price": total_price
+    }
+
+    return jsonify(data)

@@ -1,14 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import GameCard from "../../components/GameCard/GameCard";
 import Footer from "../../components/Footer/Footer";
 
 import classes from "./Favourites.module.css"
-import {UserStatus} from "../../UserStatus";
 
 const Favourites = () => {
     const [GameList, setGameList] = useState([]);
-    const {userFavourites} = useContext(UserStatus)
 
     useEffect(() => {
         fetch("/api/favourites", {
@@ -16,14 +14,13 @@ const Favourites = () => {
             cache: "no-cache",
             headers: {
                 "content-type": "application/json"
-            },
-            body: JSON.stringify({"userFavourites": userFavourites})
+            }
         })
             .then(response => response.json())
             .then (response => {
-                setGameList(response['products']);
+                setGameList(response);
             });
-    })
+    }, [])
 
     return (
         <div className="favourites">
@@ -35,16 +32,21 @@ const Favourites = () => {
                             <h1 className={classes.title}>Избранное</h1>
                         </div>
                         <div className={classes.favourites__list}>
-                            {GameList.map((game) =>
-                                <GameCard>
-                                    key={game['id']}
-                                    id={game['id']}
-                                    name={game['name']}
-                                    cost={game['cost']}
-                                    discount={game['discount']}
-                                    discount_percent={game['discount_percent']}>
-                                </GameCard>
-                            )}
+                            {GameList !== []
+                                ?
+                                GameList.map((game) =>
+                                    <GameCard
+                                        key={game['id']}
+                                        id={game['id']}
+                                        name={game['name']}
+                                        cost={game['cost']}
+                                        discount={game['discount']}
+                                        discount_percent={game['discount_percent']}>
+                                    </GameCard>
+                                )
+                                :
+                                <p>Список избранного пуст</p>
+                            }
                         </div>
                     </div>
                 </div>
