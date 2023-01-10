@@ -30,18 +30,17 @@ const Main = () => {
                     setAdmin(response['isAdmin']);
                     setAuthStatus(response['status']);
                     setUserCart(response['cart']);
-                    setUserFavourites(response['favourites'])
+                    setUserFavourites(response['favourites']);
                 }
             });
-
     }, []);
 
     return (
         <UserStatus.Provider value={{userId, username, isAdmin, authStatus, setAuthStatus, userCart, userFavourites}}>
             <App/>
         </UserStatus.Provider>
-    )
-}
+    );
+};
 
 root.render(
     <Main/>

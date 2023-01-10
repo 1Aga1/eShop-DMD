@@ -1,0 +1,41 @@
+.game__card {
+    display: flex;
+    padding: 6px;
+}
+
+.game__card img {
+    max-width: 18%;
+}
+
+.card__info {
+    width: 100%;
+    margin: 0 0 0 20px;
+}
+
+.game__name {
+    font-size: 20px;
+}
+
+@media (max-width: 1060px) {
+    .game__card img {
+        max-width: 22%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .game__card img {
+        max-width: 25%;
+    }
+}
+
+@media (max-width: 580px) {
+    .game__card img {
+        max-width: 27%;
+    }
+}
+
+@media (max-width: 485px) {
+    .game__card img {
+        max-width: 29%;
+    }
+}

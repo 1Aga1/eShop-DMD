@@ -14,7 +14,6 @@ import {useLocation} from "react-router-dom";
 const GamePage = () => {
     const [GameData, setGameData] = useState({});
 
-
     const location = useLocation();
 
     useEffect(() => {

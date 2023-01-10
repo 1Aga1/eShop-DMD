@@ -54,6 +54,10 @@ a {
     z-index: 2;
 }
 
+.btn__block div {
+    z-index: 123123123;
+}
+
 .add__to__basket__bg {
     position: absolute;
     width: 100%;

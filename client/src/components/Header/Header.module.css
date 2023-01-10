@@ -16,6 +16,7 @@
 }
 
 .finder {
+    position: relative;
     display: flex;
     align-items: center;
     width: 400px;
@@ -31,6 +32,18 @@
 
 .loupe img {
     max-width: 100%;
+}
+
+.search__result {
+    position: absolute;
+    background-color: #10002B;
+    box-shadow: 0 10px 10px  #10002b;
+    padding: 4px;
+    width: 100%;
+    max-height: 50vh;
+    top: 150%;
+    left: 0;
+    z-index: 100;
 }
 
 .menu {
@@ -106,6 +119,12 @@
     text-transform: uppercase;
 }
 
+@media (max-width: 1000px) {
+    .search__result {
+        top: 100%;
+    }
+}
+
 @media (max-width: 920px) {
     .menu {
         position: absolute;
@@ -130,5 +149,11 @@
 
     .burger {
         display: block;
+    }
+}
+
+@media (max-width: 415px) {
+    .finder {
+        position: unset;
     }
 }

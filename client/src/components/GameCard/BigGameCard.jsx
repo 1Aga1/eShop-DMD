@@ -1,11 +1,26 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 import classes from "./BigGameCard.module.css";
 import gta5logo from "../../images/gta 5 logo.svg";
 import GamePrice from "./GamePrice";
 import AddToBasketBtn from "../UI/MyButton/AddToBasket/AddToBasketBtn";
+import {UserStatus} from "../../UserStatus";
 
-const BigGameCard = () => {
+const BigGameCard = (props) => {
     const [isShowAddToBasket, SetShowAddToBasket] = useState(false);
+
+    const [basketStatus, setBasketStatus] = useState(false)
+
+    const {userCart} = useContext(UserStatus);
+
+    useEffect(() => {
+        userCart.filter(item => {
+            if (item === props.id) {
+                setBasketStatus(true);
+            }
+            return true
+        })
+    })
 
     const ShowAddToBasket = () => {
         SetShowAddToBasket(true)
@@ -16,23 +31,27 @@ const BigGameCard = () => {
     };
 
     return (
-        <a href="/game/id123123" onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
+        <Link to={"/game/"+props.id} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <div className={classes.game__card}>
                 <img src={gta5logo} alt=""/>
                 <div className={classes.card__info}>
-                    <p className={classes.game__name}>Grand Theft Auto V</p>
-                    <GamePrice></GamePrice>
+                    <p className={classes.game__name}>{props.name}</p>
+                    <GamePrice
+                        cost={props.cost}
+                        discount={props.discount}
+                        discount_percent={props.discount_percent}>
+                    </GamePrice>
                 </div>
             </div>
             {isShowAddToBasket &&
                 <div className="add__to__basket">
                     <div className={classes.add__to__basket__bg}></div>
                     <div className={classes.btn__block}>
-                        <AddToBasketBtn>В корзину</AddToBasketBtn>
+                        <AddToBasketBtn basketStatus={basketStatus} setBasketStatus={setBasketStatus} game_id={props.id}></AddToBasketBtn>
                     </div>
                 </div>
             }
-        </a>
+        </Link>
     );
 };
 

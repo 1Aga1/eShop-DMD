@@ -4,10 +4,12 @@ import classes from "./Header.module.css"
 import logo from "../../images/logo.svg";
 import loupe from "../../images/loupe.svg";
 import FinderInput from "../UI/MyInput/Finder/FinderInput";
+import SearchGameCard from "../GameCard/SearchGameCard";
 import {UserStatus} from "../../UserStatus";
 
 const Header = () => {
-    const [isShowMenu, setShowMenu] = useState(true)
+    const [isShowMenu, setShowMenu] = useState(true);
+    const [searchResults, setSearchResults] = useState([]);
 
     const {userId, username, authStatus, isAdmin} = useContext(UserStatus)
 
@@ -42,7 +44,23 @@ const Header = () => {
                     </div>
                     <div className={classes.finder}>
                         <img className={classes.loupe} src={loupe} alt=""/>
-                        <FinderInput placeholder="Начните вводить..."></FinderInput>
+                        <FinderInput placeholder="Начните вводить..."
+                                     setSearchResults={setSearchResults}
+                                     onBlur={e => setSearchResults([])}
+                        >
+                        </FinderInput>
+                        <div className={classes.search__result}>
+                            {searchResults.map((game) =>
+                                <SearchGameCard
+                                    key={game['_id']}
+                                    id={game['_id']}
+                                    name={game['name']}
+                                    cost={game['cost']}
+                                    discount={game['discount']}
+                                    discount_percent={game['discount_percent']}>
+                                </SearchGameCard>
+                            )}
+                        </div>
                     </div>
                     {isShowMenu &&
                         <div className={classes.menu}>
