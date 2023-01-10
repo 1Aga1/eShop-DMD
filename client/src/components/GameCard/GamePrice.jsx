@@ -12,7 +12,7 @@ const GamePrice = (props) => {
                     <div className={classes.discount}>-{props.discount_percent}</div>
                 </div>
                 :
-                <p className={classes.game__price}>{props.cost} руб.</p>
+                <p className={classes.game__price} style={props.style}>{props.cost} ₽</p>
             }
         </div>
     );

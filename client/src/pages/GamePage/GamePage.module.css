@@ -168,6 +168,10 @@
         width: 100%;
     }
 
+    .title__block {
+        justify-content: center;
+    }
+
     .title__block .title {
         text-align: center;
     }
@@ -195,6 +199,7 @@
 
     .game__about__screenshots {
         width: 80%;
+        margin: 40px 0 0 0;
     }
 
     .btn__block {
