@@ -15,22 +15,28 @@ def basket():
 
     session = request.cookies.get("session")
 
-    user_basket = db_find(collections, {"session": session})['cart']
+    try:
+        user_basket = db_find(collections, {"session": session})['cart']
 
-    collections = db.Product
+        collections = db.Product
 
-    for game_id in user_basket:
-        game_data = db_find(collections, {"_id": ObjectId(game_id)})
-        new_game_data.append(GameDto(game_data).get_dict())
+        for game_id in user_basket:
+            game_data = db_find(collections, {"_id": ObjectId(game_id)})
+            new_game_data.append(GameDto(game_data).get_dict())
 
-        if game_data['discount_percent'] == "":
-            total_price += int(game_data["cost"])
-        else:
-            total_price += int(game_data["discount"])
+            if game_data['discount_percent'] == "":
+                total_price += int(game_data["cost"])
+            else:
+                total_price += int(game_data["discount"])
 
-    data = {
-        "products": new_game_data,
-        "total_price": total_price
-    }
+        data = {
+            "products": new_game_data,
+            "total_price": total_price
+        }
+    except:
+        data = {
+            "products": new_game_data,
+            "total_price": total_price
+        }
 
     return jsonify(data)

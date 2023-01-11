@@ -14,12 +14,16 @@ def favourites():
 
     session = request.cookies.get("session")
 
-    user_favourites = db_find(collections, {"session": session})['favourites']
+    try:
+        user_favourites = db_find(collections, {"session": session})['favourites']
 
-    collections = db.Product
+        collections = db.Product
 
-    for game_id in user_favourites:
-        game_data = db_find(collections, {"_id": ObjectId(game_id)})
-        new_game_data.append(GameDto(game_data).get_dict())
+        for game_id in user_favourites:
+            game_data = db_find(collections, {"_id": ObjectId(game_id)})
+            new_game_data.append(GameDto(game_data).get_dict())
+
+    except:
+        return new_game_data
 
     return new_game_data

@@ -117,6 +117,27 @@
 .profile {
     font-weight: bold;
     text-transform: uppercase;
+    text-align: center;
+}
+
+.profile a {
+    display: block;
+    margin: 0;
+}
+
+.profile a:hover {
+    text-decoration: underline;
+}
+
+.sign__out {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: lowercase;
+    cursor: pointer;
+}
+
+.sign__out:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 1000px) {

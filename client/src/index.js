@@ -33,7 +33,7 @@ const Main = () => {
                     setUserFavourites(response['favourites']);
                 }
             });
-    }, []);
+    }, [authStatus]);
 
     return (
         <UserStatus.Provider value={{userId, username, isAdmin, authStatus, setAuthStatus, userCart, userFavourites}}>

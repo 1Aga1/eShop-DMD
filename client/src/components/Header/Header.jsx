@@ -11,7 +11,23 @@ const Header = () => {
     const [isShowMenu, setShowMenu] = useState(true);
     const [searchResults, setSearchResults] = useState([]);
 
-    const {userId, username, authStatus, isAdmin} = useContext(UserStatus)
+    const {userId, username, authStatus, isAdmin, setAuthStatus} = useContext(UserStatus)
+
+    const Logout = () => {
+        fetch("/api/logout", {
+            method: "POST",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then (response => {
+                if (response['status'] === "done") {
+                    setAuthStatus("unauth")
+                };
+            });
+    }
 
     const ShowMenu = () => {
         setShowMenu(!isShowMenu);
@@ -74,6 +90,7 @@ const Header = () => {
                                 ?
                                     <div className={classes.profile}>
                                         <Link to={"/profile/" + userId}>{username}</Link>
+                                        <div onClick={Logout} className={classes.sign__out}>Выйти</div>
                                     </div>
                                 :
                                     <div className={classes.sign__btn}>
