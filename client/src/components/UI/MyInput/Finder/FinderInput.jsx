@@ -10,17 +10,19 @@ const FinderInput = (props) => {
                 headers: {
                     "content-type": "application/json"
                 },
-                body: searchTerm.trim()
+                body: JSON.stringify(searchTerm.trim())
             })
                 .then(response => response.json())
                 .then (response => {
-                    props.setSearchResults(response['products']);
+                    props.setSearchResults(response);
                 });
+        } else {
+            props.setSearchResults([]);
         }
     }
 
     return (
-        <input className={classes.input} placeholder={props.placeholder} onBlur={props.onBlur} onChange={e => (Search(e.target.value))}/>
+        <input className={classes.input} placeholder={props.placeholder} onChange={e => (Search(e.target.value))}/>
     );
 };
 

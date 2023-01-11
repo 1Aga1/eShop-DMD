@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from ...configdb import db_find, db_connect
 from ...models.GameDto import GameDto
 from bson import ObjectId

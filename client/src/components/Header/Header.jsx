@@ -46,14 +46,13 @@ const Header = () => {
                         <img className={classes.loupe} src={loupe} alt=""/>
                         <FinderInput placeholder="Начните вводить..."
                                      setSearchResults={setSearchResults}
-                                     onBlur={e => setSearchResults([])}
                         >
                         </FinderInput>
                         <div className={classes.search__result}>
                             {searchResults.map((game) =>
                                 <SearchGameCard
-                                    key={game['_id']}
-                                    id={game['_id']}
+                                    key={game['id']}
+                                    id={game['id']}
                                     name={game['name']}
                                     cost={game['cost']}
                                     discount={game['discount']}
@@ -61,6 +60,7 @@ const Header = () => {
                                 </SearchGameCard>
                             )}
                         </div>
+
                     </div>
                     {isShowMenu &&
                         <div className={classes.menu}>

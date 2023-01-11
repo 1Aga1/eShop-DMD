@@ -30,3 +30,5 @@ app.register_blueprint(add_favourites_router)
 app.register_blueprint(removal_basket_router)
 app.register_blueprint(removal_favourites_router)
 
+app.register_blueprint(finder_router)
+
