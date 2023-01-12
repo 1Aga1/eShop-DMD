@@ -15,7 +15,7 @@ def add_basket():
 
         if db_find(collections, {"session": session, "cart": game_id}) == None:
             db_update(collections, {"session": session}, {"cart": game_id}, push=True)
-            data = {'status': 'done'}
+            data = {'status': 'done', "message": "Игра добавлена в корзину!"}
         else:
             data = {'status': 'error', "message": "Игра уже у вас в корзине!"}
     except:

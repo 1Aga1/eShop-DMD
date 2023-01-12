@@ -44,3 +44,15 @@ def db_update(collection, elements, new_values, pull=False, update=False, push=F
         data = {"message": "error"}
 
     return data
+
+# Удаление данных
+def db_delete(collection, elements, many=False):
+    try:
+        if many:
+            collection.delete_many(elements)
+        else:
+            collection.delete_one(elements)
+        data = "done"
+    except:
+        data = "error"
+    return data

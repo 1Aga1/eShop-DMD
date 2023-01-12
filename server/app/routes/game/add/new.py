@@ -9,7 +9,7 @@ def new_game():
     data_game = request.get_json()
     db = db_connect()
     collections = db.Product
-
+    # answer =
     if db_find(collections, {"name": data_game["name"]}) == None:
         db_insert(collections, data_game)
         data = {"message": "Игра добавлена в каталог!", "status": "done"}
