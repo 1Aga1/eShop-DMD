@@ -33,3 +33,4 @@ app.register_blueprint(removal_favourites_router)
 app.register_blueprint(finder_router)
 
 app.register_blueprint(new_game_router)
+app.register_blueprint(delete_game_router)
