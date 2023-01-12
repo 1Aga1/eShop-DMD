@@ -81,7 +81,7 @@ const Header = () => {
                     {isShowMenu &&
                         <div className={classes.menu}>
                             {isAdmin &&
-                                <Link className={classes.menu__item} to="/general">Добавить товар</Link>
+                                <Link className={classes.menu__item} to="/new_product">Добавить товар</Link>
                             }
                             <Link className={classes.menu__item} to="/general">Каталог</Link>
                             <Link className={classes.menu__item} to="/favourites">Избранное</Link>

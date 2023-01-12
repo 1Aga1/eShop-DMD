@@ -9,7 +9,7 @@ class GameDto:
         self.release_date = object['release_date']
         self.publisher = object['publisher']
         self.screenshots = object['screenshots']
-        self.picture = object['picture']
+        self.mainImage = object['mainImage']
         self.discount_percent = object['discount_percent']
         self.about_game = object['about_game']
 

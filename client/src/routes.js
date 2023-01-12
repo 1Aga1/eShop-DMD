@@ -6,6 +6,7 @@ import GamePage from "./pages/GamePage/GamePage";
 import Favourites from './pages/Favourites/Favourites'
 import Basket from "./pages/Basket/Basket";
 import Profile from "./pages/Profile/Profile";
+import NewProduct from "./pages/NewProduct/NewProduct";
 
 const Router = () => {
     return useRoutes([
@@ -32,6 +33,9 @@ const Router = () => {
         },
         {
             path: "/profile/:number", element: <Profile/>
+        },
+        {
+            path: "/new_product", element: <NewProduct/>
         }
     ])
 }
