@@ -5,7 +5,7 @@ from bson import ObjectId
 delete_game_router = Blueprint('DeleteGame', __name__, url_prefix="/api")
 
 # Добавление игры в избранное
-@delete_game_router.post('/delete')
+@delete_game_router.post('/delete_product')
 def delete_game():
     id_game = request.get_json()
     db = db_connect()

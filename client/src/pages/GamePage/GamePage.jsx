@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/Footer";
 
 import classes from "./GamePage.module.css";
 
-import gta5logo from "../../images/gta 5 logo.svg";
+import notfound from "../../images/img_n_found.png";
 import {useLocation} from "react-router-dom";
 
 const GamePage = () => {
@@ -38,7 +38,7 @@ const GamePage = () => {
                     <div className={classes.main__content}>
                         <div className={classes.game}>
                             <div className={classes.game__logo}>
-                                <img src={gta5logo} alt="Game logo"/>
+                                <img src={notfound} alt="Game logo"/>
                             </div>
                             <div className={classes.game__info}>
                                 <TitleBlock GameData={GameData}/>

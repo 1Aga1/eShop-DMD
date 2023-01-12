@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import classes from "../../pages/GamePage/GamePage.module.css";
 import ScreenshotsAndAboutBtn from "../UI/MyButton/ScreenshotsAndAbout/ScreenshotsAndAboutBtn";
-import trevor from "../../images/trevor.svg";
-import car from "../../images/car.svg";
+import notfound from "../../images/img_n_found.png";
+
 
 const AboutScreenshots = ({GameData}) => {
     const [isShowScreenshots,SetShowScreenshots] = useState(true)
@@ -26,8 +26,8 @@ const AboutScreenshots = ({GameData}) => {
             </div>
             {isShowScreenshots &&
                 <div className={classes.screenshots}>
-                    <img src={trevor} alt="trevor"/>
-                    <img src={car} alt="car"/>
+                    <img src={notfound} alt="trevor"/>
+                    <img src={notfound} alt="car"/>
                 </div>
             }
             {isShowAbout &&
