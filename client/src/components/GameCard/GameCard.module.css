@@ -1,3 +1,8 @@
+.card {
+    margin: 15px 20px;
+    cursor: pointer;
+}
+
 a {
     position: relative;
 }
@@ -52,10 +57,6 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-}
-
-.btn__block div {
-    z-index: 123123123;
 }
 
 .add__to__basket__bg {

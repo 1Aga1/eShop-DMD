@@ -28,7 +28,7 @@ const Basket = () => {
     }, []);
 
     const BuyGame = () => {
-        if (authStatus == "aut") {
+        if (authStatus === "aut") {
             fetch("/api/buying_game", {
                 method: "POST",
                 cache: "no-cache",

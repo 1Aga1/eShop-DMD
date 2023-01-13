@@ -1,6 +1,11 @@
 .game__card {
     display: flex;
     padding: 6px;
+    transition: .2s linear;
+}
+
+.game__card:hover {
+    background-color: #300683;
 }
 
 .game__card img {
