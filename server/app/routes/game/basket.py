@@ -10,6 +10,7 @@ basket_router = Blueprint('Basket', __name__, url_prefix="/api")
 def basket():
     db = db_connect()
     collections = db.Users
+
     new_game_data = []
     total_price = 0
 

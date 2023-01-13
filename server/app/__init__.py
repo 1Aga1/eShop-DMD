@@ -21,6 +21,7 @@ app.register_blueprint(general_router)
 app.register_blueprint(profile_router)
 app.register_blueprint(favourites_router)
 app.register_blueprint(basket_router)
+app.register_blueprint(changing_password_router)
 
 app.register_blueprint(game_page_router)
 
