@@ -7,6 +7,7 @@ email_password = os.environ.get("EMAIL_PASSWORD")
 
 # Отправка письма на почту с подтверждением
 def send_mail(_email, subject, text):
+    status = "false"
     try:
         msg = EmailMessage()
         msg['subject'] = subject

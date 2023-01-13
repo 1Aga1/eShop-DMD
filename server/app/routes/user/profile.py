@@ -1,6 +1,8 @@
 from ...configdb import db_find, db_connect
 from flask import Blueprint, request, jsonify
-from server.app.models.UserDto import UserDto
+from ...models.UserDto import UserDto
+from ...models.PurchasedDto import PurchasedDto
+from bson import ObjectId
 
 profile_router = Blueprint('Profile', __name__, url_prefix="/api")
 
@@ -10,13 +12,17 @@ def profile(id):
     if request.method == 'GET':
         db = db_connect()
         collections = db.Users
-        collections_Purchased = db.Purchased
-        user_data = db_find(collections, {"_id": id})
+        collections_purchased = db.Purchased
+
+        user_data = db_find(collections, {"_id": ObjectId(id)})
         new_user_data = UserDto(user_data).get_dict()
-        purchased_game = db_find(collections_Purchased, {"user_id": id})
+
+        purchased_game = db_find(collections_purchased, {"user_id": id})
+        new_purchased_game = PurchasedDto(purchased_game).get_dict()
+
         data = {
             "user_data": new_user_data,
-            "purchased_game": purchased_game
+            "purchased_game": new_purchased_game
         }
 
         return jsonify(data)

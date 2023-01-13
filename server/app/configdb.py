@@ -10,7 +10,10 @@ def db_connect():
 
 # Ввод данных в БД
 def db_insert(collection, data):
-    return collection.insert_one(data)
+    try:
+        return collection.insert_one(data)
+    except pymongo.errors.ConnectionFailure as err:
+        print(f"БД -> '{err}'")
 
 # Поиск в БД
 def db_find(collection, elements, multiple=False):
