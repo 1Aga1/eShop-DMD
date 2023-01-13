@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import BigGameCard from "../../components/GameCard/BigGameCard";
 import Footer from "../../components/Footer/Footer";
 import classes from "./Basket.module.css"
+import {UserStatus} from "../../UserStatus";
+import {useNavigate} from "react-router-dom";
 
 const Basket = () => {
     const [GameList, setGameList] = useState([]);
     const [TotalPrice, setTotalPrice] = useState();
+    const {authStatus} = useContext(UserStatus);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/api/basket", {
@@ -21,7 +25,27 @@ const Basket = () => {
                 setGameList(response['products']);
                 setTotalPrice(response['total_price']);
             });
-    }, [])
+    }, []);
+
+    const BuyGame = () => {
+        if (authStatus == "aut") {
+            fetch("/api/buying_game", {
+                method: "POST",
+                cache: "no-cache",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(GameList)
+            })
+                .then(response => response.json())
+                .then(response => {
+                    setGameList(response['products']);
+                    setTotalPrice(response['total_price']);
+                });
+        } else {
+            navigate("/signin")
+        }
+    };
 
     return (
         <div className="basket">
@@ -50,9 +74,12 @@ const Basket = () => {
                                             )
                                     }
                                 </div>
-                                <div className={classes.basket__total}>
-                                    <p className={classes.total__text}>Итого:</p>
-                                    <p className={classes.total__number}>{TotalPrice} ₽</p>
+                                <div className={classes.xui__nazvanie__ot_ahtema}>
+                                    <div className={classes.basket__total}>
+                                        <p className={classes.total__text}>Итого:</p>
+                                        <p className={classes.total__number}>{TotalPrice} ₽</p>
+                                    </div>
+                                    <button className={classes.buy__btn} onClick={BuyGame}>Оформить покупку</button>
                                 </div>
                             </div>
                         </div>

@@ -26,10 +26,13 @@
     width: 65%;
 }
 
+.xui__nazvanie__ot_ahtema {
+    width: 30%;
+}
+
 .basket__total {
     display: flex;
     justify-content: space-between;
-    width: 30%;
     border: 1px solid #C77DFF;
     padding: 20px;
     border-radius: 10px;
@@ -46,12 +49,30 @@
     color: #ffce33;
 }
 
+.buy__btn {
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 25px 0 0 0;
+    background-color: #C77DFF;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .1s linear;
+}
+
+.buy__btn:hover {
+    background-color: #985aef;
+}
+
 @media (max-width: 1030px) {
     .basket__list {
         width: 100%;
     }
 
-    .basket__total {
+    .xui__nazvanie__ot_ahtema {
         width: 100%;
     }
 }
