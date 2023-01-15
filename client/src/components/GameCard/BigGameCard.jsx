@@ -33,7 +33,10 @@ const BigGameCard = (props) => {
     return (
         <Link to={"/game/"+props.id} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <div className={classes.game__card}>
-                <img src={notfound} alt=""/>
+                {props.mainImage != null
+                    ? <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
+                    : <img src={notfound} alt=""/>
+                }
                 <div className={classes.card__info}>
                     <p className={classes.game__name}>{props.name}</p>
                     <GamePrice

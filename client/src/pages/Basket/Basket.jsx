@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 const Basket = () => {
     const [GameList, setGameList] = useState([]);
     const [TotalPrice, setTotalPrice] = useState();
+    const [alert, setAlert] = useState("");
     const {authStatus} = useContext(UserStatus);
     const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const Basket = () => {
     }, []);
 
     const BuyGame = () => {
-        if (authStatus === "aut") {
+        if (authStatus === "auth") {
             fetch("/api/buying_game", {
                 method: "POST",
                 cache: "no-cache",
@@ -39,8 +40,11 @@ const Basket = () => {
             })
                 .then(response => response.json())
                 .then(response => {
-                    setGameList(response['products']);
-                    setTotalPrice(response['total_price']);
+                    setAlert(response['message'])
+                    if (response['status'] === "done") {
+                        setGameList([]);
+                        setTotalPrice(0);
+                    }
                 });
         } else {
             navigate("/signin")
@@ -65,6 +69,7 @@ const Basket = () => {
                                             GameList.map((game) =>
                                                 <BigGameCard
                                                     key={game['id']}
+                                                    mainImage={game['mainImage']}
                                                     id={game['id']}
                                                     name={game['name']}
                                                     cost={game['cost']}
@@ -80,6 +85,7 @@ const Basket = () => {
                                         <p className={classes.total__number}>{TotalPrice} ₽</p>
                                     </div>
                                     <button className={classes.buy__btn} onClick={BuyGame}>Оформить покупку</button>
+                                    <div className="alert" style={{textAlign: "center", margin: "20px 0 0 0"}}>{alert}</div>
                                 </div>
                             </div>
                         </div>

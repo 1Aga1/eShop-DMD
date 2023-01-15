@@ -1,7 +1,7 @@
 .game__card {
     display: flex;
     padding: 6px;
-    transition: .2s linear;
+    transition: .1s linear;
 }
 
 .game__card:hover {

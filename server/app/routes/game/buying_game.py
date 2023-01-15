@@ -11,7 +11,7 @@ buying_game_router = Blueprint('BuyingGame', __name__, url_prefix="/api")
 # Страница игры, подробна инфа о ней и ТД
 @buying_game_router.post('/buying_game')
 def buying_game():
-    data_game = request.get_json()["id_game"]
+    games = request.get_json()
     session = request.cookies.get("session")
 
     db = db_connect()
@@ -22,24 +22,24 @@ def buying_game():
     old_user_data = db_find(collections_users, {"session": session})
     user_data = UserDto(old_user_data).get_dict()
     time = str(date.today())
-    for id_game in data_game:
+    for game in games:
         key = str(uuid4())
-        if db_find(collections_users, {"session": session,"cart": id_game}) != None:
-            game_data = db_find(collections_product, {"_id": ObjectId(id_game)})
+        if db_find(collections_users, {"session": session,"cart": game['id']}) != None:
+            game_data = db_find(collections_product, {"_id": ObjectId(game['id'])})
             try:
                 status = "false"
-                subject = f"Вы приобрели черкаш от DMD"
-                text = f"""Спасибо за покупку на нашем сайте DMD!\nПриобретенная игра: {game_data["name"]}!\nПокупатель: {user_data["username"]} \nПочта: {user_data["email"]}\nДата покупки: {time}\nКлюч активации:{key}"""
+                subject = f"Интернет-магазин цифровых товаров «DMD»"
+                text = f"""Спасибо за покупку на нашем сайте DMD!\n\nПриобретенный товар: {game_data["name"]}\nПокупатель: {user_data["username"]} \nПочта: {user_data["email"]}\nДата покупки: {time}\nКлюч активации: {key}"""
                 status = send_mail(user_data["email"], subject, text)
 
                 if status == "true":
-                    db_update(collections_users, {"session": session}, {"cart": id_game}, pull=True)
+                    db_update(collections_users, {"session": session}, {"cart": game['id']}, pull=True)
                     db_insert(collections_purchased, {
-                                                    "game_id": id_game,
+                                                    "game_id": game['id'],
                                                     "user_id": user_data["id"],
                                                     "date": time
                                                     })
-                    data = {"message": "Товар приобретен!", "status": "done"}
+                    data = {"message": "Покупка прошла успешно! Инструкция отправлена на почту.", "status": "done"}
             except:
                 data = {"message": "Что-то то пошло не так!", "status": "error"}
         else:

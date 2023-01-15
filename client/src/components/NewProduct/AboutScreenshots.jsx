@@ -4,17 +4,6 @@ import ScreenshotsAndAboutBtn from "../UI/MyButton/ScreenshotsAndAbout/Screensho
 
 const AboutScreenshots = ({gameInfo, setGameInfo}) => {
     const [isShowScreenshots, SetShowScreenshots] = useState(true);
-    const [isShowAbout, SetShowAbout] = useState(false);
-
-    const SwitchToScreenshots = () => {
-        SetShowScreenshots(true);
-        SetShowAbout(false);
-    };
-
-    const SwitchToAbout = () => {
-        SetShowScreenshots(false);
-        SetShowAbout(true);
-    };
 
     const addScreenshot = (img) => {
         const screenshot = new FormData();
@@ -52,35 +41,34 @@ const AboutScreenshots = ({gameInfo, setGameInfo}) => {
     return (
         <div className={classes.game__about__screenshots}>
             <div className={classes.btn__block}>
-                <ScreenshotsAndAboutBtn onClick={SwitchToScreenshots}>Скриншоты</ScreenshotsAndAboutBtn>
-                <ScreenshotsAndAboutBtn onClick={SwitchToAbout}>Об игре</ScreenshotsAndAboutBtn>
+                <ScreenshotsAndAboutBtn onClick={() => (SetShowScreenshots(true))}>Скриншоты</ScreenshotsAndAboutBtn>
+                <ScreenshotsAndAboutBtn onClick={() => (SetShowScreenshots(false))}>Об игре</ScreenshotsAndAboutBtn>
             </div>
 
-            {isShowScreenshots &&
-                <div className={classes.screenshots}>
-                    <div className={classes.screenshots__block}>
-                        {gameInfo['screenshots'].map((screenshot, index) =>
-                            screenshot &&
-                            <div className={classes.selected__img} key={index}>
-                                <img alt="not found" src={'http://localhost:5000/api/app/images/'+screenshot}/>
-                            </div>
-                        )}
+            {isShowScreenshots === true
+                ?
+                    <div className={classes.screenshots}>
+                        <div className={classes.screenshots__block}>
+                            {gameInfo['screenshots'].map((screenshot, index) =>
+                                screenshot &&
+                                <div className={classes.selected__img} key={index}>
+                                    <img alt="not found" src={'http://localhost:5000/api/app/images/'+screenshot}/>
+                                </div>
+                            )}
+                        </div>
+                        <div className={classes.btn__block}>
+                            <label className={classes.input__file}>
+                                <input type="file" name="file"
+                                       onChange={e => (addScreenshot(e.target.files[0]))}/>
+                                <span>Выберите файл</span>
+                            </label>
+                            <button className={classes.delete__img} onClick={() => (deleteScreenshot())}>Удалить</button>
+                        </div>
                     </div>
-                    <div className={classes.btn__block}>
-                        <label className={classes.input__file}>
-                            <input type="file" name="file"
-                                   onChange={e => (addScreenshot(e.target.files[0]))}/>
-                            <span>Выберите файл</span>
-                        </label>
-                        <button className={classes.delete__img} onClick={() => (deleteScreenshot())}>Удалить</button>
+                :
+                    <div className={classes.game__about}>
+                        <textarea onChange={e => (setGameInfo({...gameInfo, about_game: e.target.value}))}>{gameInfo['about_game']}</textarea>
                     </div>
-                </div>
-            }
-
-            {isShowAbout &&
-                <div className={classes.game__about}>
-                    <textarea onChange={e => (setGameInfo({...gameInfo, about_game: e.target.value}))}>{gameInfo['about_game']}</textarea>
-                </div>
             }
         </div>
     );

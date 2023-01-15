@@ -38,7 +38,7 @@ const GamePage = () => {
                     <div className={classes.main__content}>
                         <div className={classes.game}>
                             <div className={classes.game__logo}>
-                                {GameData['mainImage'] != null
+                                {GameData['mainImage'] !== null
                                     ? <img src={'http://localhost:5000/api/app/images/'+GameData['mainImage']} alt=""/>
                                     : <img src={notfound} alt=""/>
                                 }

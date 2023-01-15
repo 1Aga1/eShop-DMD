@@ -37,6 +37,7 @@ const Favourites = () => {
                                 GameList.map((game) =>
                                     <GameCard
                                         key={game['id']}
+                                        mainImage={game['mainImage']}
                                         id={game['id']}
                                         name={game['name']}
                                         cost={game['cost']}

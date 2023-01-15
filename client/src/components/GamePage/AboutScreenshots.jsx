@@ -3,7 +3,6 @@ import classes from "../../pages/GamePage/GamePage.module.css";
 import ScreenshotsAndAboutBtn from "../UI/MyButton/ScreenshotsAndAbout/ScreenshotsAndAboutBtn";
 import notfound from "../../images/img_n_found.png";
 
-
 const AboutScreenshots = ({screenshots, about_game}) => {
     const [isShowScreenshots,SetShowScreenshots] = useState(false)
 
@@ -16,7 +15,7 @@ const AboutScreenshots = ({screenshots, about_game}) => {
             {isShowScreenshots === true
                 ?
                     <div className={classes.screenshots}>
-                        {screenshots !== []
+                        {screenshots !== undefined
                             ?
                                 screenshots.map((screenshot, index) =>
                                     <img src={'http://localhost:5000/api/app/images/'+screenshot} alt="" key={index}/>
