@@ -34,6 +34,7 @@ const General = () => {
                             {ProductList.map((product) =>
                                 <GameCard
                                     key={product['_id']}
+                                    mainImage={product['mainImage']}
                                     id={product['_id']}
                                     name={product['name']}
                                     cost={product['cost']}

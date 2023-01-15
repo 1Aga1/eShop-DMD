@@ -88,11 +88,23 @@ const NewProduct = () => {
                     setGameInfo({...gameInfo, mainImage: response['filename']});
                 }
             });
-
     }
 
     const deleteMainImg = () => {
-        setGameInfo({...gameInfo, mainImage: null});
+        fetch("/api/delete_file", {
+            method: "POST",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(gameInfo['mainImage']),
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response['status'] === "done") {
+                    setGameInfo({...gameInfo, mainImage: null});
+                }
+            });
     }
 
     return (
@@ -106,7 +118,7 @@ const NewProduct = () => {
                                 {gameInfo['mainImage'] != null
                                 ?
                                     <div className={classes.selected__img}>
-                                        <img alt="not found"  src={gameInfo['mainImage']}/>
+                                        <img alt="not found" src={'http://localhost:5000/api/app/images/'+gameInfo['mainImage']}/>
                                         <button className={classes.delete__img} onClick={() => (deleteMainImg())}>Удалить</button>
                                     </div>
                                 :

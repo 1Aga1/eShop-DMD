@@ -11,7 +11,6 @@ def upload_file():
     filename, file_extension = os.path.splitext(file.filename)
 
     upload_folder = os.environ.get("UPLOAD_FOLDER")
-    api_url = os.environ.get("API_URL")
 
     if not os.path.isdir(upload_folder):
         os.makedirs(upload_folder)
@@ -30,6 +29,4 @@ def upload_file():
     except:
         os.remove(destination)
 
-    filename = api_url + "/" + filename
-
-    return {"status": "done", "filename": filename}
+    return {"status": "done", "filename": file_hash}

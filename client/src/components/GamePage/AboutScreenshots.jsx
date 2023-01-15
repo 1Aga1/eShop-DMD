@@ -4,36 +4,31 @@ import ScreenshotsAndAboutBtn from "../UI/MyButton/ScreenshotsAndAbout/Screensho
 import notfound from "../../images/img_n_found.png";
 
 
-const AboutScreenshots = ({GameData}) => {
-    const [isShowScreenshots,SetShowScreenshots] = useState(true)
-    const [isShowAbout,SetShowAbout] = useState(false)
-
-    const SwitchToScreenshots = () => {
-        SetShowScreenshots(true);
-        SetShowAbout(false);
-    }
-
-    const SwitchToAbout = () => {
-        SetShowScreenshots(false);
-        SetShowAbout(true);
-    }
+const AboutScreenshots = ({screenshots, about_game}) => {
+    const [isShowScreenshots,SetShowScreenshots] = useState(false)
 
     return (
         <div className={classes.game__about__screenshots}>
             <div className={classes.btn__block}>
-                <ScreenshotsAndAboutBtn onClick={SwitchToScreenshots}>Скриншоты</ScreenshotsAndAboutBtn>
-                <ScreenshotsAndAboutBtn onClick={SwitchToAbout}>Об игре</ScreenshotsAndAboutBtn>
+                <ScreenshotsAndAboutBtn onClick={() => (SetShowScreenshots(true))}>Скриншоты</ScreenshotsAndAboutBtn>
+                <ScreenshotsAndAboutBtn onClick={() => (SetShowScreenshots(false))}>Об игре</ScreenshotsAndAboutBtn>
             </div>
-            {isShowScreenshots &&
-                <div className={classes.screenshots}>
-                    <img src={notfound} alt="trevor"/>
-                    <img src={notfound} alt="car"/>
-                </div>
-            }
-            {isShowAbout &&
-                <div className={classes.game__about}>
-                    <p>{GameData['about_game']}</p>
-                </div>
+            {isShowScreenshots === true
+                ?
+                    <div className={classes.screenshots}>
+                        {screenshots !== []
+                            ?
+                                screenshots.map((screenshot, index) =>
+                                    <img src={'http://localhost:5000/api/app/images/'+screenshot} alt="" key={index}/>
+                                )
+                            :
+                                <img src={notfound} alt=""/>
+                        }
+                    </div>
+                :
+                    <div className={classes.game__about}>
+                        <p>{about_game}</p>
+                    </div>
             }
         </div>
     );

@@ -38,14 +38,17 @@ const GamePage = () => {
                     <div className={classes.main__content}>
                         <div className={classes.game}>
                             <div className={classes.game__logo}>
-                                <img src={notfound} alt="Game logo"/>
+                                {GameData['mainImage'] != null
+                                    ? <img src={'http://localhost:5000/api/app/images/'+GameData['mainImage']} alt=""/>
+                                    : <img src={notfound} alt=""/>
+                                }
                             </div>
                             <div className={classes.game__info}>
                                 <TitleBlock GameData={GameData}/>
                                 <PriceBlock GameData={GameData}/>
                                 <MainInfo GameData={GameData}/>
                             </div>
-                            <AboutScreenshots GameData={GameData}/>
+                            <AboutScreenshots screenshots={GameData['screenshots']} about_game={GameData['about_game']}/>
                         </div>
                     </div>
                 </div>

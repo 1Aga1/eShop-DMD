@@ -34,7 +34,10 @@ const GameCard = (props) => {
         <div className={classes.card} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <Link to={"/game/"+props.id} style={{maxWidth: props.maxWidth}}>
                 <div className={classes.game__card}>
-                    <img src={notfound} alt=""/>
+                    {props.mainImage != null
+                    ? <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
+                    : <img src={notfound} alt=""/>
+                    }
                     <div className={classes.card__info}>
                         <p className={classes.game__name} style={{fontSize: props.fontSize, padding: props.padding}}>{props.name}</p>
                         <GamePrice style={{fontSize: props.fontSize, padding: props.padding}}

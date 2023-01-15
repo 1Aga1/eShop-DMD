@@ -17,20 +17,36 @@ const AboutScreenshots = ({gameInfo, setGameInfo}) => {
     };
 
     const addScreenshot = (img) => {
-        setGameInfo({...gameInfo, screenshots: [...gameInfo['screenshots'], img]})
+        const screenshot = new FormData();
+        screenshot.append("file", img)
 
-        // if (!("screenshots" in screenshots)) {
-        //     screenshots.append("screenshots", [img]);
-        // } else {
-        //     screenshots['screenshots'] = [...screenshots['screenshots'], img];
-        // };
-        //
-        // console.log(screenshots);
+        fetch("/api/upload_file", {
+            method: "POST",
+            body: screenshot,
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response['status'] === "done") {
+                    setGameInfo({...gameInfo, screenshots: [...gameInfo['screenshots'], response['filename']]});
+                }
+            });
     };
 
     const deleteScreenshot = () => {
-        setGameInfo({...gameInfo, screenshots: []})
-        // picture.delete("screenshots");
+        fetch("/api/delete_file", {
+            method: "POST",
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(gameInfo['screenshots']),
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response['status'] === "done") {
+                    setGameInfo({...gameInfo, screenshots: []})
+                }
+            });
     };
 
     return (
@@ -46,7 +62,7 @@ const AboutScreenshots = ({gameInfo, setGameInfo}) => {
                         {gameInfo['screenshots'].map((screenshot, index) =>
                             screenshot &&
                             <div className={classes.selected__img} key={index}>
-                                <img alt="not found"  src={URL.createObjectURL(screenshot)}/>
+                                <img alt="not found" src={'http://localhost:5000/api/app/images/'+screenshot}/>
                             </div>
                         )}
                     </div>

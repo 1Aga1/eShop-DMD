@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import classes from "./BigGameCard.module.css";
-import gta5logo from "../../images/gta 5 logo.svg";
+import notfound from "../../images/img_n_found.png";
 import GamePrice from "./GamePrice";
 import AddToBasketBtn from "../UI/MyButton/AddToBasket/AddToBasketBtn";
 import {UserStatus} from "../../UserStatus";
@@ -33,7 +33,7 @@ const BigGameCard = (props) => {
     return (
         <Link to={"/game/"+props.id} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <div className={classes.game__card}>
-                <img src={gta5logo} alt=""/>
+                <img src={notfound} alt=""/>
                 <div className={classes.card__info}>
                     <p className={classes.game__name}>{props.name}</p>
                     <GamePrice
