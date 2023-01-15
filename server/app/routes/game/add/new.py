@@ -10,12 +10,14 @@ def new_game():
     db = db_connect()
     collections = db.Product
 
-    data_game['discount_percent'] = str(data_game['discount_percent']) + "%"
+    print(data_game)
 
-    if db_find(collections, {"name": data_game["name"]}) == None:
-        db_insert(collections, data_game)
-        data = {"message": "Игра добавлена в каталог!", "status": "done"}
-    else:
-        data = {"message": "Игра уже существует!", "status": "error"}
-
-    return jsonify(data)
+    # data_game['discount_percent'] = str(data_game['discount_percent']) + "%"
+    #
+    # if db_find(collections, {"name": data_game["name"]}) == None:
+    #     db_insert(collections, data_game)
+    #     data = {"message": "Игра добавлена в каталог!", "status": "done"}
+    # else:
+    #     data = {"message": "Игра уже существует!", "status": "error"}
+    #
+    # return jsonify(data)

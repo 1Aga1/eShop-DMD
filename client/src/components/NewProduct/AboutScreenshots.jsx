@@ -3,8 +3,8 @@ import classes from "../../pages/NewProduct/NewProduct.module.css";
 import ScreenshotsAndAboutBtn from "../UI/MyButton/ScreenshotsAndAbout/ScreenshotsAndAboutBtn";
 
 const AboutScreenshots = ({gameInfo, setGameInfo}) => {
-    const [isShowScreenshots,SetShowScreenshots] = useState(true);
-    const [isShowAbout,SetShowAbout] = useState(false);
+    const [isShowScreenshots, SetShowScreenshots] = useState(true);
+    const [isShowAbout, SetShowAbout] = useState(false);
 
     const SwitchToScreenshots = () => {
         SetShowScreenshots(true);
@@ -14,6 +14,23 @@ const AboutScreenshots = ({gameInfo, setGameInfo}) => {
     const SwitchToAbout = () => {
         SetShowScreenshots(false);
         SetShowAbout(true);
+    };
+
+    const addScreenshot = (img) => {
+        setGameInfo({...gameInfo, screenshots: [...gameInfo['screenshots'], img]})
+
+        // if (!("screenshots" in screenshots)) {
+        //     screenshots.append("screenshots", [img]);
+        // } else {
+        //     screenshots['screenshots'] = [...screenshots['screenshots'], img];
+        // };
+        //
+        // console.log(screenshots);
+    };
+
+    const deleteScreenshot = () => {
+        setGameInfo({...gameInfo, screenshots: []})
+        // picture.delete("screenshots");
     };
 
     return (
@@ -36,13 +53,14 @@ const AboutScreenshots = ({gameInfo, setGameInfo}) => {
                     <div className={classes.btn__block}>
                         <label className={classes.input__file}>
                             <input type="file" name="file"
-                                   onChange={e => (setGameInfo({...gameInfo, screenshots: [...gameInfo['screenshots'], e.target.files[0]]}))}/>
+                                   onChange={e => (addScreenshot(e.target.files[0]))}/>
                             <span>Выберите файл</span>
                         </label>
-                        <button className={classes.delete__img} onClick={e => (setGameInfo({...gameInfo, screenshots: [null]}))}>Удалить</button>
+                        <button className={classes.delete__img} onClick={() => (deleteScreenshot())}>Удалить</button>
                     </div>
                 </div>
             }
+
             {isShowAbout &&
                 <div className={classes.game__about}>
                     <textarea onChange={e => (setGameInfo({...gameInfo, about_game: e.target.value}))}>{gameInfo['about_game']}</textarea>

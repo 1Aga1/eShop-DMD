@@ -20,8 +20,8 @@ const NewProduct = () => {
         "platforms": "",
         "release_date": "",
         "publisher": "",
-        "screenshots": [null],
-        "about_game": ""
+        "about_game": "",
+        "screenshots": []
     };
 
     const [gameInfo, setGameInfo] = useState({
@@ -34,12 +34,11 @@ const NewProduct = () => {
         "platforms": "",
         "release_date": "",
         "publisher": "",
-        "screenshots": [null],
-        "about_game": ""
+        "about_game": "",
+        "screenshots": []
     });
 
     const [alert, setAlert] = useState("")
-
     const {authStatus, isAdmin} = useContext(UserStatus)
     const navigate = useNavigate();
 
@@ -74,6 +73,28 @@ const NewProduct = () => {
         }
     };
 
+
+    const addMainImg = (img) => {
+        const mainImage = new FormData();
+        mainImage.append("file", img)
+
+        fetch("/api/upload_file", {
+            method: "POST",
+            body: mainImage,
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response['status'] === "done") {
+                    setGameInfo({...gameInfo, mainImage: response['filename']});
+                }
+            });
+
+    }
+
+    const deleteMainImg = () => {
+        setGameInfo({...gameInfo, mainImage: null});
+    }
+
     return (
         <div className="game__page">
             <Header></Header>
@@ -85,17 +106,16 @@ const NewProduct = () => {
                                 {gameInfo['mainImage'] != null
                                 ?
                                     <div className={classes.selected__img}>
-                                        <img alt="not found"  src={URL.createObjectURL(gameInfo['mainImage'])}/>
-                                        <button className={classes.delete__img} onClick={()=>setGameInfo({...gameInfo, mainImage: null})}>Удалить</button>
+                                        <img alt="not found"  src={gameInfo['mainImage']}/>
+                                        <button className={classes.delete__img} onClick={() => (deleteMainImg())}>Удалить</button>
                                     </div>
                                 :
                                     <label className={classes.input__file}>
                                         <input type="file" name="file"
-                                               onChange={(e) => (setGameInfo({...gameInfo, mainImage: e.target.files[0]}))}/>
+                                               onChange={(e) => (addMainImg(e.target.files[0]))}/>
                                         <span>Выберите файл</span>
                                     </label>
                                 }
-
                             </div>
                             <div className={classes.game__info}>
                                 <TitleBlock  gameInfo={gameInfo} setGameInfo={setGameInfo}/>

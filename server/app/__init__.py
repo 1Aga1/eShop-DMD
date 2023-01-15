@@ -36,3 +36,5 @@ app.register_blueprint(finder_router)
 
 app.register_blueprint(new_game_router)
 app.register_blueprint(delete_game_router)
+
+app.register_blueprint(upload_file_router)

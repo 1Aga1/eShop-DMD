@@ -21,7 +21,7 @@ def buying_game():
 
     old_user_data = db_find(collections_users, {"session": session})
     user_data = UserDto(old_user_data).get_dict()
-    time = date.today()
+    time = str(date.today())
     for id_game in data_game:
         key = str(uuid4())
         if db_find(collections_users, {"session": session,"cart": id_game}) != None:
@@ -37,11 +37,11 @@ def buying_game():
                     db_insert(collections_purchased, {
                                                     "game_id": id_game,
                                                     "user_id": user_data["id"],
-                                                    "date": str(time)
+                                                    "date": time
                                                     })
                     data = {"message": "Товар приобретен!", "status": "done"}
             except:
                 data = {"message": "Что-то то пошло не так!", "status": "error"}
         else:
-            data = {"message": "В карзине нет такой игры!", "status": "error"}
+            data = {"message": "В корзине нет такой игры!", "status": "error"}
     return jsonify(data)
