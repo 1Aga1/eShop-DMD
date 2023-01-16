@@ -22,14 +22,26 @@ def buying_game():
     old_user_data = db_find(collections_users, {"session": session})
     user_data = UserDto(old_user_data).get_dict()
     time = str(date.today())
+
     for game in games:
+        print(game)
         key = str(uuid4())
-        if db_find(collections_users, {"session": session,"cart": game['id']}) != None:
-            game_data = db_find(collections_product, {"_id": ObjectId(game['id'])})
+        if db_find(collections_users, {"session": session, "cart": game['id']}) != None:
             try:
+                if game["discount_percent"] != "0%":
+                    cost = game["discount"]
+                else:
+                    cost = game["cost"]
                 status = "false"
                 subject = f"Интернет-магазин цифровых товаров «DMD»"
-                text = f"""Спасибо за покупку на нашем сайте DMD!\n\nПриобретенный товар: {game_data["name"]}\nПокупатель: {user_data["username"]} \nПочта: {user_data["email"]}\nДата покупки: {time}\nКлюч активации: {key}"""
+                text = f"""Спасибо за покупку на нашем сайте DMD!
+                
+                Приобретенный товар: {game["name"]}
+                Покупатель: {user_data["username"]}
+                Почта: {user_data["email"]}
+                Дата покупки: {time}
+                Ключ активации: {key}
+                Цена: {cost}"""
                 status = send_mail(user_data["email"], subject, text)
 
                 if status == "true":
