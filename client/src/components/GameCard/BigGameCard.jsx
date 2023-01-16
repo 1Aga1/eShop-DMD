@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import classes from "./BigGameCard.module.css";
-import notfound from "../../images/img_n_found.png";
 import GamePrice from "./GamePrice";
 import AddToBasketBtn from "../UI/MyButton/AddToBasket/AddToBasketBtn";
 import {UserStatus} from "../../UserStatus";
@@ -9,7 +8,7 @@ import {UserStatus} from "../../UserStatus";
 const BigGameCard = (props) => {
     const [isShowAddToBasket, SetShowAddToBasket] = useState(false);
 
-    const [basketStatus, setBasketStatus] = useState(false)
+    const [basketStatus, setBasketStatus] = useState(true)
 
     const {userCart} = useContext(UserStatus);
 
@@ -20,7 +19,7 @@ const BigGameCard = (props) => {
             }
             return true
         })
-    })
+    }, [])
 
     const ShowAddToBasket = () => {
         SetShowAddToBasket(true)
@@ -33,10 +32,7 @@ const BigGameCard = (props) => {
     return (
         <Link to={"/game/"+props.id} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <div className={classes.game__card}>
-                {props.mainImage != null
-                    ? <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
-                    : <img src={notfound} alt=""/>
-                }
+                <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
                 <div className={classes.card__info}>
                     <p className={classes.game__name}>{props.name}</p>
                     <GamePrice

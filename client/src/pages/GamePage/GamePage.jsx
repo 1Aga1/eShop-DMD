@@ -5,11 +5,8 @@ import PriceBlock from "../../components/GamePage/PriceBlock";
 import MainInfo from "../../components/GamePage/MainInfo";
 import AboutScreenshots from "../../components/GamePage/AboutScreenshots";
 import Footer from "../../components/Footer/Footer";
-
-import classes from "./GamePage.module.css";
-
-import notfound from "../../images/img_n_found.png";
 import {useLocation} from "react-router-dom";
+import classes from "./GamePage.module.css";
 
 const GamePage = () => {
     const [GameData, setGameData] = useState({});
@@ -38,10 +35,7 @@ const GamePage = () => {
                     <div className={classes.main__content}>
                         <div className={classes.game}>
                             <div className={classes.game__logo}>
-                                {GameData['mainImage'] !== null
-                                    ? <img src={'http://localhost:5000/api/app/images/'+GameData['mainImage']} alt=""/>
-                                    : <img src={notfound} alt=""/>
-                                }
+                                <img src={'http://localhost:5000/api/app/images/'+GameData['mainImage']} alt=""/>
                             </div>
                             <div className={classes.game__info}>
                                 <TitleBlock GameData={GameData}/>

@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import classes from "./GameCard.module.css";
-import notfound from "../../images/img_n_found.png";
 import GamePrice from "./GamePrice";
 import AddToBasketBtn from "../UI/MyButton/AddToBasket/AddToBasketBtn";
 import {UserStatus} from "../../UserStatus";
@@ -34,10 +33,7 @@ const GameCard = (props) => {
         <div className={classes.card} onMouseEnter={ShowAddToBasket} onMouseLeave={HideAddToBasket}>
             <Link to={"/game/"+props.id} style={{maxWidth: props.maxWidth}}>
                 <div className={classes.game__card}>
-                    {props.mainImage != null
-                        ? <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
-                        : <img src={notfound} alt=""/>
-                    }
+                    <img src={'http://localhost:5000/api/app/images/'+props.mainImage} alt=""/>
                     <div className={classes.card__info}>
                         <p className={classes.game__name} style={{fontSize: props.fontSize, padding: props.padding}}>{props.name}</p>
                         <GamePrice style={{fontSize: props.fontSize, padding: props.padding}}

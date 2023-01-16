@@ -25,10 +25,10 @@ def basket():
             game_data = db_find(collections, {"_id": ObjectId(game_id)})
             new_game_data.append(GameDto(game_data).get_dict())
 
-            if game_data['discount_percent'] == "":
-                total_price += int(game_data["cost"])
+            if new_game_data['discount_percent'] == "":
+                total_price += int(new_game_data["cost"])
             else:
-                total_price += int(game_data["discount"])
+                total_price += int(new_game_data["discount"])
 
         data = {
             "products": new_game_data,
