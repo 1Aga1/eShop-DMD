@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect
+from app.configdb import db_update, db_connect
 from flask import Blueprint, request
 
 removal_favourites_router = Blueprint('RemovalFavouritesRouter', __name__, url_prefix="/api")

@@ -1,5 +1,5 @@
 from flask import request, Blueprint, jsonify
-from server.app.configdb import db_connect, db_find
+from app.configdb import db_connect, db_find
 
 
 login_required_router = Blueprint('Login_required', __name__, url_prefix="/api")

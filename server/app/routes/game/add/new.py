@@ -1,4 +1,4 @@
-from server.app.configdb import db_connect, db_find, db_insert
+from app.configdb import db_connect, db_find, db_insert
 from flask import Blueprint, request, jsonify
 
 new_game_router = Blueprint('NewGame', __name__, url_prefix="/api")

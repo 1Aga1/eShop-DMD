@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, make_response
-from server.app.services import authorization
+from app.services import authorization
 
 authorization_router = Blueprint('Authorization', __name__, url_prefix="/api")
 

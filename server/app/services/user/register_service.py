@@ -1,4 +1,4 @@
-from server.app.configdb import db_connect, db_insert, db_find
+from app.configdb import db_connect, db_insert, db_find
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
 from ..sending_mail import send_mail

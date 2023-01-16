@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect, db_find
+from app.configdb import db_update, db_connect, db_find
 from flask import Blueprint, request
 
 add_basket_router = Blueprint('AddBasketRouter', __name__, url_prefix="/api")

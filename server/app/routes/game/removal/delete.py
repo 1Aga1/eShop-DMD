@@ -1,4 +1,4 @@
-from server.app.configdb import db_update, db_connect, db_find, db_insert, db_delete
+from app.configdb import db_update, db_connect, db_find, db_insert, db_delete
 from flask import Blueprint, request, jsonify
 from bson import ObjectId
 

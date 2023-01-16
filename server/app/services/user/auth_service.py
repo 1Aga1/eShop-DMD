@@ -1,7 +1,7 @@
 from werkzeug.security import check_password_hash
 from uuid import uuid4
 
-from server.app.configdb import db_find, db_connect, db_update
+from app.configdb import db_find, db_connect, db_update
 
 # Авторизация
 def authorization(_username, _password):
