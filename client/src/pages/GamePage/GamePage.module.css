@@ -82,6 +82,7 @@
 .price__block {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .delete {
@@ -260,5 +261,17 @@
 @media (max-width: 480px) {
     .game__main__info__item {
         width: 100%;
+    }
+}
+
+@media (max-width: 295px) {
+    .delete {
+        margin: 20px 0 0 20px;
+    }
+}
+
+@media (max-width: 280px) {
+    .delete {
+        margin: 20px 0 0 5px;
     }
 }

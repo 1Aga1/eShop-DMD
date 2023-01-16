@@ -9,6 +9,7 @@ class UserDto:
         self.favourites = object['favourites']
         self.cart = object['cart']
         self.isAdmin = object['isAdmin']
+        self.avatar = object['avatar']
 
     def get_dict(self):
         return self.__dict__

@@ -19,6 +19,14 @@ def profile(id):
     purchased_game = db_find(collections_purchased, {"user_id": id})
     new_purchased_game = PurchasedDto(purchased_game).get_dict()
 
+    if new_user_data['avatar'] == "":
+        new_user_data['avatar'] = "avatar.png"
+
+    if new_user_data['isAdmin'] == True:
+        new_user_data['isAdmin'] = "Администратор"
+    else:
+        new_user_data['isAdmin'] = "Пользователь"
+
     data = {
         "user_data": new_user_data,
         "purchased_game": new_purchased_game

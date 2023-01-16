@@ -56,7 +56,6 @@ const AddToBasketBtn = ({basketStatus, setBasketStatus, game_id}) => {
                     ? <button className={classes.button} onClick={addBasket}>В корзину</button>
                     : <button className={classes.button} onClick={removeBasket}>Убрать</button>
             }
-
         </div>
         
     );

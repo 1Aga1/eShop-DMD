@@ -1,11 +1,12 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
-import classes from "../General/General.module.css";
+import classes from "./Profile.module.css";
 import Footer from "../../components/Footer/Footer";
 import {UserStatus} from "../../UserStatus";
 
 const Profile = () => {
     const {authStatus, userId} = useContext(UserStatus)
+    const [UserData, setUserData] = useState({});
 
     useEffect(() => {
         if (authStatus === "auth") {
@@ -18,10 +19,10 @@ const Profile = () => {
             })
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
+                    setUserData(response['user_data'])
                 });
         };
-    });
+    }, [authStatus]);
 
     return (
         <div className="profile">
@@ -31,6 +32,20 @@ const Profile = () => {
                     <div className={classes.main__content}>
                         <div className={classes.content__header}>
                             <h1 className={classes.title}>Профиль</h1>
+                        </div>
+                        <div className={classes.profile}>
+                            <div className={classes.main_info}>
+                                <div className={classes.avatar}>
+                                    <img src={'http://localhost:5000/api/app/images/'+UserData['avatar']} alt=""/>
+                                </div>
+                                <div className={classes.user_info}>
+                                    <div className={classes.username__n__role}>
+                                        <p className={classes.username}>{UserData['username']}</p>
+                                        <p className={classes.role}>{UserData['isAdmin']}</p>
+                                    </div>
+                                    <div className={classes.email}>Email: {UserData['email']}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
